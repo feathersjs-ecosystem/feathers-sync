@@ -1,0 +1,46 @@
+{
+  "name": "feathers-mubsub",
+  "description": "Feathers",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/feathersjs/feathers-mubsub.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/feathersjs/feathers-mubsub/issues"
+  },
+  "homepage": "https://github.com/feathersjs/feathers-mubsub",
+  "keywords": [
+    "feathers",
+    "feathers-plugin",
+    "cluster"
+  ],
+  "author": "David Luecke <daff@neyeon.com> (https://feathersjs.com)",
+  "contributors": [],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "main": "lib/mubsub.js",
+  "scripts": {
+    "publish": "git push origin --tags",
+    "release:patch": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish",
+    "jshint": "jshint lib/. test/. --config",
+    "mocha": "mocha test/",
+    "test": "npm run jshint && npm run mocha"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "debug": "^2.1.3",
+    "mubsub": "^1.0.4"
+  },
+  "devDependencies": {
+    "feathers": "^1.0.2",
+    "jshint": "^2.6.3",
+    "mocha": "^2.1.0"
+  }
+}
