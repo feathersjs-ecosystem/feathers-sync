@@ -1,11 +1,11 @@
 var redis = require('redis');
 var debug = require('debug')('feathers-sync:redis');
 
-var pub = redis.createClient();
-var sub = redis.createClient();
-
 module.exports = function(config) {
   debug('setting up database %s', config.db);
+
+  var pub = redis.createClient(config.db);
+  var sub = redis.createClient(config.db);
 
   return function() {
 
