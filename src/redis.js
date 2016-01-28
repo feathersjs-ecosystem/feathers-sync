@@ -41,7 +41,6 @@ module.exports = function(config) {
       // Override an emit that publishes to the hub
       service.mixin({
         emit: function(ev, data) {
-          console.log('redis.new.emit', data);
           var event = path + ' ' + ev;
           debug('emitting event to channel %s', event);
           return service.pub.publish(event, JSON.stringify(data));
