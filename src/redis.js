@@ -4,9 +4,6 @@ var debug = require('debug')('feathers-sync:redis');
 module.exports = function(config) {
   debug('setting up database %s', config.db);
 
-  var pub = redis.createClient(config.db);
-  var sub = redis.createClient(config.db);
-
   return function() {
 
     var oldSetup = this.setup;
@@ -15,22 +12,19 @@ module.exports = function(config) {
 
       var result = oldSetup.apply(this, arguments);
       var services = this.services;
-
       Object.keys(services).forEach(function(path) {
-
         var service = services[path];
+        service.pub = redis.createClient(config.db);
+        service.sub = redis.createClient(config.db);
         service._serviceEvents.forEach(function(event) {
-
           var ev = path + ' ' + event;
           debug('subscribing to handler %s', ev);
-
-          sub.subscribe(ev);
-          sub.on('message', function(data) {
-            if(data !== ev ){ return; }
+          service.sub.subscribe(ev);
+          service.sub.on('message', function(e, data) {
+            data = JSON.parse(data);
             debug('got event, calling old emit %s', data);
             service._emit.call(service, event, data);
           });
-
         });
       });
       return result;
@@ -47,15 +41,16 @@ module.exports = function(config) {
       // Override an emit that publishes to the hub
       service.mixin({
         emit: function(ev, data) {
+          console.log('redis.new.emit', data);
           var event = path + ' ' + ev;
           debug('emitting event to channel %s', event);
-          return pub.publish(event, data);
+          return service.pub.publish(event, JSON.stringify(data));
         }
       });
     });
 
     if(typeof config.connect === 'function') {
-      sub.on('connect', config.connect);
+      config.connect();
     }
   };
 };

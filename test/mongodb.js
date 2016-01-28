@@ -3,7 +3,7 @@ var feathers = require('feathers');
 var sync = require('../src/sync');
 
 function app(port, connect) {
-  var result = feathers().configure(sync('mongo', {
+  var result = feathers().configure(sync({
       db: 'mongodb://localhost:27017/feathers-sync',
       connect: connect
     }))
@@ -24,7 +24,7 @@ function app(port, connect) {
   return result;
 }
 
-describe('feathers-sync tests', function () {
+describe('feathers-sync:mongodb tests', function () {
   var app1, app2, app3;
 
   before(function (done) {

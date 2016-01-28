@@ -1,22 +1,22 @@
-var mubsub = require('mubsub');
 var debug = require('debug')('feathers-sync');
-var mubsub = require('./mubsub');
+var mongo = require('./mongodb');
 var redis = require('./redis');
 
-module.exports = function(adapter, config) {
+module.exports = function(config) {
 
-  adapter = adapter || 'mongo';
-  config = config || { db: 'localhost:27017/sync' };
+  config = config || { db: 'mongodb://localhost:27017/sync' };
 
-  if(['mongo', 'redis'].indexOf(adapter) === -1){
-    return debug('Adapter not found %s', adapter);
+  var proto = config.db.split('://')[0];
+
+  if(['mongodb', 'redis'].indexOf(proto) === -1){
+    return debug('Adapter not found %s', proto);
   }
 
-  debug('will sync via adapter: %s ', adapter);
+  debug('will sync via adapter: %s ', proto);
 
-  if(adapter.indexOf('mongo') > -1){
-    return mubsub(config);
-  } else if(adapter === 'redis') {
+  if('mongodb' === proto){
+    return mongo(config);
+  } else if('redis' === proto) {
     return redis(config);
   } else {
     return;
