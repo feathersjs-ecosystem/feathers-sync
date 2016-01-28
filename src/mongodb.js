@@ -1,8 +1,8 @@
 var mubsub = require('mubsub');
-var debug = require('debug')('feathers-mubsub');
+var debug = require('debug')('feathers-sync');
 
 module.exports = function(config) {
-  debug('Setting up database', config.db);
+  debug('setting up database %s', config.db);
 
   var client = mubsub(config.db);
   var channel = client.channel(config.collection || 'events', config);
@@ -17,9 +17,9 @@ module.exports = function(config) {
         var service = services[path];
         service._serviceEvents.forEach(function(event) {
           var ev = path + ' ' + event;
-          debug('Subscribing to handler', ev);
+          debug('subscribing to handler %s', ev);
           channel.subscribe(ev, function(data) {
-            debug('Got event, calling old emit', ev);
+            debug('got event, calling old emit %s', ev);
             service._emit.call(service, event, data);
           });
         });
@@ -39,7 +39,7 @@ module.exports = function(config) {
       service.mixin({
         emit: function(ev, data) {
           var event = path + ' ' + ev;
-          debug('Emitting event to channel', event);
+          debug('emitting event to channel %s', event);
           return channel.publish(event, data);
         }
       });

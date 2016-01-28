@@ -1,40 +1,43 @@
-# Feathers MubSub
+# Feathers sync
 
-[![Build Status](https://travis-ci.org/feathersjs/feathers-mubsub.png?branch=master)](https://travis-ci.org/feathersjs/feathers-mubsub)
+[![Build Status](https://travis-ci.org/feathersjs/feathers-sync.png?branch=master)](https://travis-ci.org/feathersjs/feathers-sync)
 
 > Synchronize service events between application instances using MongoDB publish/subscribe
 
 ## About
 
-When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed`) do not get propagated to other instances. feathers-mubsub uses MongoDB publish/subscribe via [mubsub](https://github.com/scttnlsn/mubsub) to propagate all events to all application instances.
+When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed`) do not get propagated to other instances. feathers-sync uses MongoDB publish/subscribe via [sync](https://github.com/scttnlsn/sync) to propagate all events to all application instances.
 
 This allows to scale real-time websocket connections to any number of clients.
 
-The application initialized in the following example will use the local `feathers-mubsub` database and `mubsub` collection and share service events with every other instance connected to the same database:
+The application initialized in the following example will use the local `feathers-sync` database and `sync` collection and share service events with every other instance connected to the same database:
 
 ```js
 var feathers = require('feathers');
-var mubsub = require('feathers-mubsub');
+var sync = require('feathers-sync');
 
 var app = feathers();
 app.configure(feathers.rest())
   .configure(feathers.socketio())
-  .configure(mubsub({
-    db: 'mongodb://localhost:27017/feathers-mubsub',
-    collection: 'mubsub'
+  .configure(sync('mongo', {
+    db: 'mongodb://localhost:27017/sync',
+    collection: 'events'
   }))
   .use('/todos', todoService);
 
 app.listen(3000);
 ```
 
+Arguments:
+- adapter - `mongo` or `redis`
+
 Options:
 
-- __db__ - The MongoDB connection string (e.g. `mongodb://localhost:27017/feathers-mubsub`) or database object
-- __collection__ - The name of the capped event collection (default is `events)
+- __db__ - The mongo or redis connection string (e.g. `mongodb://localhost:27017/events` `localhost:6379`) or database object
+- __collection__ - The name of the capped event collection (default is `events`) - this is discarded in redis
 - __connect__ - A callback when the MongoDB connection has been established
 
-Additionally you can pass the original mubsub options:
+Additionally you can pass the original sync options (also discarded in redis):
 
 - __size__ - max size of the collection in bytes, default is 5mb
 - __max__ - max amount of documents in the collection
@@ -50,6 +53,10 @@ Instead, event listeners should only be used to update the local state (e.g. a l
 If you need to perform actions, for example setting up a first blog post after a new user has been created add it to the service method itself (which will only run on its own instance) or use [feather-hooks](https://github.com/feathersjs/feathers-hooks) after hooks.
 
 ## Changelog
+
+0.2.0
+
+- Can now use Redis or Mongo
 
 __0.1.0__
 
