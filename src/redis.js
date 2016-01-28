@@ -43,13 +43,16 @@ module.exports = function(config) {
         emit: function(ev, data) {
           var event = path + ' ' + ev;
           debug('emitting event to channel %s', event);
+          // Something is converting the second argument to a string here
+          // So for now, pass the data as a string, and serialize back on other side
           return service.pub.publish(event, JSON.stringify(data));
         }
       });
-    });
 
-    if(typeof config.connect === 'function') {
-      config.connect();
-    }
+
+      if(typeof config.connect === 'function') {
+        setTimeout(config.connect, 50);
+      }
+    });
   };
 };
