@@ -14,9 +14,9 @@ module.exports = function(config) {
 
   debug('will sync via adapter: %s ', proto);
 
-  if('mongodb' === proto){
+  if(proto === 'mongodb'){
     return mongo(config);
-  } else if('redis' === proto) {
+  } else if(proto === 'redis') {
     return redis(config);
   } else {
     return;
