@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/feathersjs/feathers-mubsub.git"
+    "url": "https://github.com/feathersjs/feathers-sync.git"
   },
   "license": "MIT",
   "bugs": {
@@ -16,7 +16,7 @@
     "feathers-plugin",
     "cluster"
   ],
-  "author": "David Luecke <daff@neyeon.com> (https://feathersjs.com)",
+  "author": "Feathers contributors (https://feathersjs.com)",
   "contributors": [],
   "engines": {
     "node": ">=0.10.0"

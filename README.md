@@ -54,12 +54,9 @@ If you need to perform actions, for example setting up a first blog post after a
 
 ## Changelog
 
-0.2.0
-
-- Can now use Redis or Mongo
-
 __0.1.0__
 
+- Can now use Redis or Mongo
 - Initial release
 
 ## Author
