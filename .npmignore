@@ -1,3 +1,5 @@
+.gitignore
+.jshintrc
+.travis.yml
 .idea/
-src/
 test/
