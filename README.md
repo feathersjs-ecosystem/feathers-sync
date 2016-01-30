@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/feathersjs/feathers-sync.png?branch=master)](https://travis-ci.org/feathersjs/feathers-sync)
 
-> Synchronize service events between application instances using MongoDB publish/subscribe
+> Synchronize service events between application instances using Redis or MongoDB publish/subscribe
 
 ## About
 
