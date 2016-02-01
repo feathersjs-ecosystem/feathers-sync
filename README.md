@@ -19,7 +19,7 @@ var sync = require('feathers-sync');
 var app = feathers();
 app.configure(feathers.rest())
   .configure(feathers.socketio())
-  .configure(sync('mongo', {
+  .configure(sync({
     db: 'mongodb://localhost:27017/sync',
     collection: 'events'
   }))
@@ -29,11 +29,8 @@ app.listen(3000);
 ```
 
 Arguments:
-- adapter - `mongo` or `redis`
 
-Options:
-
-- __db__ - The mongo or redis connection string (e.g. `mongodb://localhost:27017/events` `localhost:6379`) or database object
+- __db__ - The mongo or redis connection string (e.g. `mongodb://localhost:27017/events` `redis://localhost:6379`) or database object
 - __collection__ - The name of the capped event collection (default is `events`) - this is discarded in redis
 - __connect__ - A callback when the MongoDB connection has been established
 
