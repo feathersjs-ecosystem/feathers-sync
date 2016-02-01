@@ -28,7 +28,7 @@ app.configure(feathers.rest())
 app.listen(3000);
 ```
 
-### MongoDB:
+### Use with MongoDB:
 
 - __db__ - The MongoDB connection string (e.g. `mongodb://localhost:27017/events`) or database object
 - __collection__ - The name of the capped event collection (default is `events`)
@@ -41,7 +41,7 @@ Additionally you can pass the original sync options:
 - __retryInterval__ - Time in ms to wait if no docs are found, default is 200ms
 - __recreate__ - Recreate the tailable cursor when an error occurs (default is `true`)
 
-### Redis:
+### Use with Redis:
 
 - __db__ - The Redis connection string (e.g. `redis://localhost:6379`) or database object
 - __connect__ - A callback for when the Redis connection has been established
