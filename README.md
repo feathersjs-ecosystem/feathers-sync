@@ -28,18 +28,23 @@ app.configure(feathers.rest())
 app.listen(3000);
 ```
 
-Arguments:
+### MongoDB:
 
-- __db__ - The mongo or redis connection string (e.g. `mongodb://localhost:27017/events` `redis://localhost:6379`) or database object
-- __collection__ - The name of the capped event collection (default is `events`) - this is discarded in redis
-- __connect__ - A callback when the MongoDB connection has been established
+- __db__ - The MongoDB connection string (e.g. `mongodb://localhost:27017/events`) or database object
+- __collection__ - The name of the capped event collection (default is `events`)
+- __connect__ - A callback for when the MongoDB connection has been established
 
-Additionally you can pass the original sync options (also discarded in redis):
+Additionally you can pass the original sync options:
 
-- __size__ - max size of the collection in bytes, default is 5mb
-- __max__ - max amount of documents in the collection
-- __retryInterval__ - time in ms to wait if no docs are found, default is 200ms
-- __recreate__ - recreate the tailable cursor when an error occurs (default is `true`)
+- __size__ - Max size of the collection in bytes, default is 5mb
+- __max__ - Max amount of documents in the collection
+- __retryInterval__ - Time in ms to wait if no docs are found, default is 200ms
+- __recreate__ - Recreate the tailable cursor when an error occurs (default is `true`)
+
+### Redis:
+
+- __db__ - The Redis connection string (e.g. `redis://localhost:6379`) or database object
+- __connect__ - A callback for when the Redis connection has been established
 
 ## Caveats
 
