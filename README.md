@@ -6,7 +6,7 @@
 
 ## About
 
-When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed`) do not get propagated to other instances. feathers-sync uses MongoDB publish/subscribe via [sync](https://github.com/scttnlsn/sync) to propagate all events to all application instances.
+When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed`) do not get propagated to other instances. feathers-sync uses MongoDB publish/subscribe via [mubsub](https://github.com/scttnlsn/mubsub) or Redis via [redis](https://github.com/NodeRedis/node_redis) to propagate all events to all application instances.
 
 This allows to scale real-time websocket connections to any number of clients.
 
