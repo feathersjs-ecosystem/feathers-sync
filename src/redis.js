@@ -21,8 +21,12 @@ module.exports = function(config) {
           debug('subscribing to handler %s', ev);
           service.sub.subscribe(ev);
           service.sub.on('message', function(e, data) {
+            if (e != ev) {
+              return;
+            }
+            
             data = JSON.parse(data);
-            debug('got event, calling old emit %s', data);
+            debug('got event "%s", calling old emit %s', e, data);
             service._emit.call(service, event, data);
           });
         });
