@@ -21,7 +21,7 @@ module.exports = function(config) {
           debug('subscribing to handler %s', ev);
           service.sub.subscribe(ev);
           service.sub.on('message', function(e, data) {
-            if (e != ev) {
+            if (e !== ev) {
               return;
             }
             
