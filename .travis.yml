@@ -3,6 +3,5 @@ services:
   - mongodb
   - redis-server
 node_js:
-  - '0.10'
   - 'node'
   - 'iojs'
