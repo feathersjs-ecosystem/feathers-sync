@@ -69,7 +69,7 @@ var publish = function(ev,data){
 module.exports = function(config) {
 
   debug('setting up AMQP uri %s', config.uri);
-
+  conf.uri = config.uri;
   if(!config.prefix){
     conf.prefix = '';
   }else{
