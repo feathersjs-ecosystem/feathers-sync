@@ -1,7 +1,7 @@
 var amqplib = require('amqplib/callback_api');
 var debug = require('debug')('feathers-sync');
 
-var ch;
+var channel;
 var conf ={};
 var listSubscriber = [];
 
@@ -22,18 +22,18 @@ var connection = function(cb){
     if(err){
       debug('Error while connecting to AMQP: ', err.toString());
     }else{
-      ch = conn.createChannel();
+      channel = conn.createChannel();
 
-      ch.assertExchange(exchangeName, 'fanout', {durable: false});
-      ch.assertQueue('', {exclusive: true}, function(err, q) {
+      channel.assertExchange(exchangeName, 'fanout', {durable: false});
+      channel.assertQueue('', {exclusive: true}, function(err, q) {
         if(err){
           debug('Error while assertQueue to AMQP: ', err.toString());
         }else{
-          ch.bindQueue(q.queue, exchangeName, '');
+          channel.bindQueue(q.queue, exchangeName, '');
            if(typeof cb === 'function'){
-             cb(ch);
+             cb(channel);
            }
-          ch.consume(q.queue, function(msg) {
+          channel.consume(q.queue, function(msg) {
             var temp = JSON.parse(msg.content.toString());
             onmessage(temp.ev,temp.data);
           }, {noAck: true});
@@ -56,11 +56,11 @@ var publish = function(ev,data){
   msg.ev = ev;
   msg.data = data;
   //amqp name
-  if(ch){
-    ch.publish(exchangeName, '', new Buffer(JSON.stringify(msg)));
+  if(channel){
+    channel.publish(exchangeName, '', new Buffer(JSON.stringify(msg)));
   }else{
-    connection(function(ch){
-      ch.publish(exchangeName, '', new Buffer(JSON.stringify(msg)));
+    connection(function(channel){
+      channel.publish(exchangeName, '', new Buffer(JSON.stringify(msg)));
     });
   }
 
