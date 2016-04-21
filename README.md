@@ -46,6 +46,12 @@ Additionally you can pass the original sync options:
 - __db__ - The Redis connection string (e.g. `redis://localhost:6379`) or database object
 - __connect__ - A callback for when the Redis connection has been established
 
+### Use with AMQP
+
+- __uri__ - The AMQP connection string (e.g. `amqp://guest:guest@localhost:5672`)
+- __prefix__ - A prefix that will be applied to all queues, exchanges and messages created by sync
+- __amqpConnectionOptions__ - AMQP connection options
+
 ## Caveats
 
 When listening to service events with this, all events are going to get propagated to all clients. This means, that your event listeners should not perform any actions that change the global state (e.g. write something into the database) because every client will perform the same action.
