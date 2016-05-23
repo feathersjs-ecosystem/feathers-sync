@@ -43,6 +43,6 @@
   "devDependencies": {
     "feathers": "^2.0.0",
     "jshint": "^2.6.3",
-    "mocha": "^2.1.0"
+    "mocha": "^2.5.0"
   }
 }
