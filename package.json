@@ -41,7 +41,7 @@
     "redis": "^2.4.2"
   },
   "devDependencies": {
-    "feathers": "^2.0.0",
+    "feathers": "^2.0.2",
     "jshint": "^2.6.3",
     "mocha": "^3.0.0"
   }
