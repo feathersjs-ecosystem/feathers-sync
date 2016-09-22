@@ -4,10 +4,6 @@
 
 > Synchronize service events between application instances using Redis or MongoDB publish/subscribe
 
-## How it works
-
-![alt tag](https://raw.githubusercontent.com/PedroMD/feathers-sync/master/feathers-sync%20and%20real-time%20events-60.png)
-
 ## About
 
 When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed`) do not get propagated to other instances. feathers-sync uses MongoDB publish/subscribe via [mubsub](https://github.com/scttnlsn/mubsub) or Redis via [redis](https://github.com/NodeRedis/node_redis) to propagate all events to all application instances.
@@ -55,6 +51,10 @@ Additionally you can pass the original sync options:
 - __uri__ - The AMQP connection string (e.g. `amqp://guest:guest@localhost:5672`)
 - __prefix__ - A prefix that will be applied to all queues, exchanges and messages created by sync
 - __amqpConnectionOptions__ - AMQP connection options
+
+## How it works
+
+![alt tag](https://raw.githubusercontent.com/PedroMD/feathers-sync/master/feathers-sync%20and%20real-time%20events-60.png)
 
 ## Caveats
 
