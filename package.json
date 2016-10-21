@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "feathers": "^2.0.0",
-    "jshint": "^2.6.3",
+    "jshint": "^2.9.4",
     "mocha": "^3.0.0"
   }
 }
