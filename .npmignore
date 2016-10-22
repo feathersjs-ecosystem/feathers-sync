@@ -2,4 +2,4 @@
 .travis.yml
 .idea/
 test/
-.github
+.github/
