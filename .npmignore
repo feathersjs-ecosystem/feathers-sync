@@ -1,5 +1,4 @@
 .gitignore
-.jshintrc
 .travis.yml
 .idea/
 test/
