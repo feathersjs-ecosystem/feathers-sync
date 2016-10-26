@@ -28,8 +28,9 @@
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish",
     "lint": "eslint-if-supported semistandard --fix",
-    "mocha": "mocha test/",
-    "test": "npm run lint && npm run mocha"
+    "mocha": "mocha --opts mocha.opts",
+    "test": "npm run lint && npm run coverage",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --opts mocha.opts"
   },
   "semistandard": {
     "env": [
@@ -51,6 +52,7 @@
   "devDependencies": {
     "eslint-if-supported": "^1.0.1",
     "feathers": "^2.0.0",
+    "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.0.0",
     "semistandard": "^9.1.0"
   }

@@ -3,3 +3,7 @@
 .idea/
 test/
 .github/
+coverage
+.editorconfig
+.istanbul.yml
+.babelrc
