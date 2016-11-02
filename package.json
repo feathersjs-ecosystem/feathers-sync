@@ -19,7 +19,7 @@
   "author": "Feathers contributors (https://feathersjs.com)",
   "contributors": [],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">= 4"
   },
   "main": "src/sync.js",
   "scripts": {
