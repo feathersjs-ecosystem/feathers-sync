@@ -21,6 +21,10 @@ var connection = function (cb) {
       debug('Error while connecting to AMQP: ', err.toString());
     } else {
       channel = conn.createChannel();
+      
+      if (conf.amqp && typeof conf.amqp.onClose === 'function') {
+        channel.on('close', conf.amqp.onClose);
+      }
 
       channel.assertExchange(exchangeName, 'fanout', {durable: false});
       channel.assertQueue('', {exclusive: true}, function (err, q) {
