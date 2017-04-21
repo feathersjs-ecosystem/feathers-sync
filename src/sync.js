@@ -26,6 +26,6 @@ module.exports = function (config) {
   } else if (proto === 'amqp') {
     return amqp(config);
   } else {
-    return;
+
   }
 };

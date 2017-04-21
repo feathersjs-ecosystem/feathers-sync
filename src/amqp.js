@@ -55,10 +55,10 @@ var publish = function (ev, data) {
   msg.data = data;
   // amqp name
   if (channel) {
-    channel.publish(exchangeName, '', new Buffer(JSON.stringify(msg)));
+    channel.publish(exchangeName, '', Buffer.from(JSON.stringify(msg)));
   } else {
     connection(function (channel) {
-      channel.publish(exchangeName, '', new Buffer(JSON.stringify(msg)));
+      channel.publish(exchangeName, '', Buffer.from(JSON.stringify(msg)));
     });
   }
 };
