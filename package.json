@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "eslint-if-supported": "^1.0.1",
-    "feathers": "^2.0.0",
+    "feathers": "^2.0.3",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.0.0",
     "semistandard": "^11.0.0"
