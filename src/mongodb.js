@@ -6,6 +6,10 @@ module.exports = function (config) {
 
   var client = mubsub(config.db);
   var channel = client.channel(config.collection || 'events', config);
+  
+  if (config.mongo && typeof config.mongo.onError === 'function') {
+    client.on('error', config.mongo.onError);
+  }
 
   return function () {
     var oldSetup = this.setup;
