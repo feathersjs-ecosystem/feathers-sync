@@ -3,9 +3,15 @@ var debug = require('debug')('feathers-sync');
 
 module.exports = function (config) {
   debug('setting up database %s', config.db);
-
+  var collection = config.collection || 'events';
   var client = mubsub(config.db);
-  var channel = client.channel(config.collection || 'events', config);
+
+  // Delete non-valid mubsub config options, causes a crash if
+  // these keys are present.
+  delete config.db;
+  delete config.collection;
+
+  var channel = client.channel(collection, config);
 
   return function () {
     var oldSetup = this.setup;
