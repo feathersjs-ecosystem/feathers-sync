@@ -1,17 +1,11 @@
 var mubsub = require('mubsub');
 var debug = require('debug')('feathers-sync');
+var omit = require('lodash').omit;
 
 module.exports = function (config) {
   debug('setting up database %s', config.db);
-  var collection = config.collection || 'events';
   var client = mubsub(config.db);
-
-  // Delete non-valid mubsub config options, causes a crash if
-  // these keys are present.
-  delete config.db;
-  delete config.collection;
-
-  var channel = client.channel(collection, config);
+  var channel = client.channel(config.collection || 'events', omit(config, ['db', 'collection']));
 
   return function () {
     var oldSetup = this.setup;
