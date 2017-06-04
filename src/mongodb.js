@@ -1,11 +1,11 @@
 var mubsub = require('mubsub');
 var debug = require('debug')('feathers-sync');
+var omit = require('lodash').omit;
 
 module.exports = function (config) {
   debug('setting up database %s', config.db);
-
   var client = mubsub(config.db);
-  var channel = client.channel(config.collection || 'events', config);
+  var channel = client.channel(config.collection || 'events', omit(config, ['db', 'collection']));
 
   return function () {
     var oldSetup = this.setup;
