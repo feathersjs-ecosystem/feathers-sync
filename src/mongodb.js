@@ -4,8 +4,8 @@ var omit = require('lodash').omit;
 
 module.exports = function (config) {
   debug('setting up database %s', config.db);
-  var client = mubsub(config.db);
-  var channel = client.channel(config.collection || 'events', omit(config, ['db', 'collection']));
+  var client = mubsub(config.db, config.mubsub);
+  var channel = client.channel(config.collection || 'events', omit(config, ['mubsub', 'db', 'collection']));
 
   return function () {
     var oldSetup = this.setup;
