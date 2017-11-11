@@ -32,7 +32,7 @@ module.exports = function (config) {
       return result;
     };
 
-    this.providers.push(function (path, service) {
+    function configurePlugin(service, path) {
       if (typeof service.emit !== 'function' || typeof service.on !== 'function') {
         return;
       }
@@ -53,6 +53,13 @@ module.exports = function (config) {
       if (typeof config.connect === 'function') {
         setTimeout(config.connect, 50);
       }
-    });
+    }
+
+    if (this.version && parseInt(this.version, 10) >= 3) {
+      this.mixins.push(configurePlugin);
+    }
+    else {
+      this.providers.push((path, service) => configurePlugin(service, path));
+    }
   };
 };
