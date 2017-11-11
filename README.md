@@ -40,6 +40,7 @@ app.listen(3000);
 - __db__ - The MongoDB connection string (e.g. `mongodb://localhost:27017/events`) or database object
 - __collection__ - The name of the capped event collection (default is `events`)
 - __connect__ - A callback for when the MongoDB connection has been established
+- __mubsub__ - Settings to be passed to mubsub (e.g. `{authSource:'admin'}`)
 
 Additionally you can pass the original sync options:
 
