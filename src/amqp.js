@@ -103,7 +103,7 @@ module.exports = function (config) {
       return result;
     };
 
-    function conifgurePlugin (service, path) {
+    function configurePlugin (service, path) {
       if (typeof service.emit !== 'function' || typeof service.on !== 'function') {
         return;
       }
