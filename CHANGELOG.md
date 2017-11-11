@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/feathersjs-ecosystem/feathers-sync/tree/HEAD)
-
-[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v0.1.3...HEAD)
+## [v0.1.4](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v0.1.4) (2017-11-11)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v0.1.3...v0.1.4)
 
 **Merged pull requests:**
 
