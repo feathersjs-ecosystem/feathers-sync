@@ -1,6 +1,6 @@
 var assert = require('assert');
-var feathers = require('feathers');
-var sync = require('../src/sync');
+var feathers = require('@feathersjs/feathers');
+var sync = require('../lib/sync');
 
 function app (port, connect) {
   var result = feathers().configure(sync({
@@ -8,19 +8,19 @@ function app (port, connect) {
     connect: connect
   }))
     .use('/todos', {
-      create: function (data, params, callback) {
-        callback(null, data);
+      create (data) {
+        return Promise.resolve(data);
       },
 
-      remove: function (id, params, callback) {
-        callback(null, {id: id});
+      remove (id) {
+        return Promise.resolve({ id });
       },
 
-      update: function (id, data, params, callback) {
-        callback(null, data);
+      update (id, data) {
+        return Promise.resolve(data);
       }
     });
-  result.listen(port);
+  result.setup();
   return result;
 }
 
@@ -37,7 +37,7 @@ describe('feathers-sync:redis tests', function () {
     });
   });
 
-  it('creating todo on app1 trigger created on all apps', function (done) {
+  it('creating todo on app1 trigger created on all apps', done => {
     var count = 0;
     var original = { test: 'data' };
     var onCreated = function (app) {
@@ -54,8 +54,7 @@ describe('feathers-sync:redis tests', function () {
     onCreated(app2);
     onCreated(app3);
 
-    app1.service('todos').create(original, {}, function (err, data) {
-      assert.equal(null, err);
+    app1.service('todos').create(original).then(data => {
       assert.deepEqual(original, data);
     });
   });
