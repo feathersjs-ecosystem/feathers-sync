@@ -25,7 +25,6 @@ function app (port, connect) {
 }
 
 describe('feathers-sync:mongodb tests', function () {
-  this.timeout(10000);
   var app1, app2, app3;
 
   before(function (done) {
