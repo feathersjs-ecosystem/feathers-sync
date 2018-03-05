@@ -1,42 +1,17 @@
-var assert = require('assert');
-var app = require('./app');
+// const assert = require('assert');
+// const _app = require('./app');
 
-describe('feathers-sync:amqp tests', function () {
-  var app1, app2, app3;
+// describe('feathers-sync RabbitMQ tests', () => {
+//   const createApp = _app('amqp', {
+//     uri: 'amqp://guest:guest@localhost:5672'
+//   });
+//   let app1, app2, app3;
 
-  before(function (done) {
-    const options = {
-      uri: 'amqp://guest:guest@localhost:5672'
-    };
+//   before(() => {
+//     app1 = createApp();
+//     app2 = createApp();
+//     app3 = createApp();
 
-    app1 = app(options, function () {
-      app2 = app(options, function () {
-        app3 = app(options, function () {
-          done();
-        });
-      });
-    });
-  });
-
-  it('creating todo on app1 trigger created on all apps', done => {
-    var count = 0;
-    var original = { test: 'data' };
-    var onCreated = function (app) {
-      app.service('todos').once('created', function (data) {
-        assert.deepEqual(original, data);
-        count++;
-        if (count === 3) {
-          done();
-        }
-      });
-    };
-
-    onCreated(app1);
-    onCreated(app2);
-    onCreated(app3);
-
-    app1.service('todos').create(original).then(data =>
-      assert.deepEqual(original, data)
-    ).catch(done);
-  });
-});
+//     return app3.sync.ready;
+//   });
+// });
