@@ -9,10 +9,16 @@ describe('feathers-sync Redis tests', () => {
 
   before(() => {
     app1 = createApp();
-    app2 = createApp();
-    app3 = createApp();
 
-    return app3.sync.ready;
+    return app1.sync.ready.then(() => {
+      app2 = createApp();
+
+      return app2.sync.ready;
+    }).then(() => {
+      app3 = createApp();
+
+      return app3.sync.ready;
+    });
   });
 
   it('creating todo on app1 trigger created on all apps with hook context', done => {
