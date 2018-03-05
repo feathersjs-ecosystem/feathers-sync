@@ -1,36 +1,17 @@
 var assert = require('assert');
-var feathers = require('@feathersjs/feathers');
-var sync = require('../lib/sync');
-
-function app (port, connect) {
-  var result = feathers().configure(sync({
-    db: 'redis://localhost:6379',
-    connect: connect
-  }))
-    .use('/todos', {
-      create (data) {
-        return Promise.resolve(data);
-      },
-
-      remove (id) {
-        return Promise.resolve({ id });
-      },
-
-      update (id, data) {
-        return Promise.resolve(data);
-      }
-    });
-  result.setup();
-  return result;
-}
+var app = require('./app');
 
 describe('feathers-sync:redis tests', function () {
   var app1, app2, app3;
 
   before(function (done) {
-    app1 = app(8884, function () {
-      app2 = app(8885, function () {
-        app3 = app(8886, function () {
+    const options = {
+      db: 'redis://localhost:6379'
+    };
+
+    app1 = app(options, function () {
+      app2 = app(options, function () {
+        app3 = app(options, function () {
           done();
         });
       });
