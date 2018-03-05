@@ -1,36 +1,17 @@
 var assert = require('assert');
-var feathers = require('@feathersjs/feathers');
-var sync = require('../lib/sync');
+var app = require('./app');
 
-function app (port, connect) {
-  var result = feathers().configure(sync({
-    db: 'mongodb://localhost:27017/feathers-sync',
-    connect: connect
-  }))
-  .use('/todos', {
-    create (data) {
-      return Promise.resolve(data);
-    },
-
-    remove (id) {
-      return Promise.resolve({ id });
-    },
-
-    update (id, data) {
-      return Promise.resolve(data);
-    }
-  });
-  result.setup();
-  return result;
-}
-
-describe('feathers-sync:mongodb tests', function () {
+describe('feathers-sync:amqp tests', function () {
   var app1, app2, app3;
 
   before(function (done) {
-    app1 = app(8887, function () {
-      app2 = app(8888, function () {
-        app3 = app(8889, function () {
+    const options = {
+      uri: 'amqp://guest:guest@localhost:5672'
+    };
+
+    app1 = app(options, function () {
+      app2 = app(options, function () {
+        app3 = app(options, function () {
           done();
         });
       });
