@@ -114,6 +114,49 @@ Instead, event listeners should only be used to update the local state (e.g. a l
 
 If you need to perform actions, for example setting up a first blog post after a new user has been created, add it to the service method itself (which will only run on its own instance) or use a [Feathers after hook](https://docs.feathersjs.com/api/hooks.html).
 
+## Writing custom adapters
+
+`feathers-sync` allows to implement custom adapters using the `sync-in` and `sync-out` events on the application:
+
+```js
+const { core } = require('feathers-sync');
+const myMessagingService = {
+  publish(data) {
+    // send data here
+  },
+
+  subscribe(callback) {
+    // subscribe to message queue and emit data
+  }
+}
+
+module.exports = config => {
+  return app => {
+    app.configure(core);
+    app.sync = {
+      type: 'custom',
+      ready: new Promise((resolve, reject) => {
+        // resolve when client is ready
+        // reject on connection error
+      })
+    };
+    
+    // Sent every time a service 
+    app.on('sync-out', data => {
+      // Publish `data` to the message queue
+      myMessagingService.publish(data);
+    });
+
+    myMessagingService.subscribe(data => {
+      // Send the synchronization event to the application
+      app.emit('sync-in', data);
+    });
+  };
+};
+```
+
+The `data` for the `sync-in` event should be in the same form as the one that is sent by `sync-out` (currently it includes `{ event, path, data, context }`).
+
 ## License
 
 Copyright (c) 2018 Feathers contributors
