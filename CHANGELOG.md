@@ -1,5 +1,16 @@
 # Change Log
 
+## [v1.0.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.0.0) (2018-03-06)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v0.1.4...v1.0.0)
+
+**Merged pull requests:**
+
+- Add unified top level usage [\#78](https://github.com/feathersjs-ecosystem/feathers-sync/pull/78) ([daffl](https://github.com/daffl))
+- Refactor into extensible common event system [\#77](https://github.com/feathersjs-ecosystem/feathers-sync/pull/77) ([daffl](https://github.com/daffl))
+- Add tests for AMQP [\#76](https://github.com/feathersjs-ecosystem/feathers-sync/pull/76) ([daffl](https://github.com/daffl))
+- Update to Feathers v3 and new plugin infrastructure [\#75](https://github.com/feathersjs-ecosystem/feathers-sync/pull/75) ([daffl](https://github.com/daffl))
+- Update dependencies to enable Greenkeeper 🌴 [\#70](https://github.com/feathersjs-ecosystem/feathers-sync/pull/70) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v0.1.4](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v0.1.4) (2017-11-11)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v0.1.3...v0.1.4)
 
