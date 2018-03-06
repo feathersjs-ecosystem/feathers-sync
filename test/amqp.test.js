@@ -1,29 +1,39 @@
-var assert = require('assert');
-var app = require('./app');
+const assert = require('assert');
+const _app = require('./app');
+const createApp = _app('amqp', {
+  uri: 'amqp://guest:guest@localhost:5672'
+});
 
-describe('feathers-sync:amqp tests', function () {
-  var app1, app2, app3;
+describe('feathers-sync AMQP tests', () => {
+  let app1, app2, app3;
 
-  before(function (done) {
-    const options = {
-      uri: 'amqp://guest:guest@localhost:5672'
-    };
+  before(() => {
+    app1 = createApp();
 
-    app1 = app(options, function () {
-      app2 = app(options, function () {
-        app3 = app(options, function () {
-          done();
-        });
-      });
+    return app1.sync.ready.then(() => {
+      app2 = createApp();
+
+      return app2.sync.ready;
+    }).then(() => {
+      app3 = createApp();
+
+      return app3.sync.ready;
     });
   });
 
-  it('creating todo on app1 trigger created on all apps', done => {
-    var count = 0;
-    var original = { test: 'data' };
-    var onCreated = function (app) {
-      app.service('todos').once('created', function (data) {
+  it('creating todo on app1 trigger created on all apps with hook context', done => {
+    const original = { test: 'data' };
+    let count = 0;
+    const onCreated = app => {
+      app.service('todo').once('created', (data, context) => {
         assert.deepEqual(original, data);
+        assert.ok(context);
+        assert.deepEqual(context.result, data);
+        assert.equal(context.method, 'create');
+        assert.equal(context.type, 'after');
+        assert.equal(context.service, app.service('todo'));
+        assert.equal(context.app, app);
+
         count++;
         if (count === 3) {
           done();
@@ -35,7 +45,7 @@ describe('feathers-sync:amqp tests', function () {
     onCreated(app2);
     onCreated(app3);
 
-    app1.service('todos').create(original).then(data =>
+    app1.service('todo').create(original).then(data =>
       assert.deepEqual(original, data)
     ).catch(done);
   });
