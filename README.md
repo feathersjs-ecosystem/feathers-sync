@@ -7,56 +7,100 @@
 [![Download Status](https://img.shields.io/npm/dm/feathers-sync.svg?style=flat-square)](https://www.npmjs.com/package/feathers-sync)
 [![Slack Status](http://slack.feathersjs.com/badge.svg)](http://slack.feathersjs.com)
 
-> Synchronize service events between application instances using Redis or MongoDB publish/subscribe
+> Synchronize service events between application instances
 
 ## About
 
-When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed`) do not get propagated to other instances. feathers-sync uses MongoDB publish/subscribe via [mubsub](https://github.com/scttnlsn/mubsub) or Redis via [redis](https://github.com/NodeRedis/node_redis) to propagate all events to all application instances.
+When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed`) do not get propagated to other instances.
+
+feathers-sync uses a messaging mechanism to propagate all events to all application instances. It currently supports:
+
+- MongoDB publish/subscribe (via [mubsub](https://github.com/scttnlsn/mubsub))
+- Redis via [redis](https://github.com/NodeRedis/node_redis)
+- AMQP (RabbitMQ) via [amqplib](https://github.com/squaremo/amqp.node)
 
 This allows to scale real-time websocket connections to any number of clients.
+
+### Usage
 
 The application initialized in the following example will use the local `feathers-sync` database and `sync` collection and share service events with every other instance connected to the same database:
 
 ```js
-var feathers = require('feathers');
-var sync = require('feathers-sync');
+const feathers = require('@feathers/feathers');
+const sync = require('feathers-sync');
 
-var app = feathers();
-app.configure(feathers.rest())
-  .configure(feathers.socketio())
-  .configure(sync({
-    db: 'mongodb://localhost:27017/sync',
-    collection: 'events'
-  }))
-  .use('/todos', todoService);
+const app = feathers();
 
-app.listen(3000);
+app.configure(sync({
+  uri: 'mongodb://localhost:27017/sync',
+  collection: 'events'
+}));
+app.use('/todos', todoService);
 ```
 
-### Use with MongoDB:
+### `app.sync`
 
-- __db__ - The MongoDB connection string (e.g. `mongodb://localhost:27017/events`) or database object
-- __collection__ - The name of the capped event collection (default is `events`)
-- __connect__ - A callback for when the MongoDB connection has been established
-- __mubsub__ - Settings to be passed to mubsub (e.g. `{authSource:'admin'}`)
+When set up, `app.sync` will contain the following information:
 
-Additionally you can pass the original sync options:
+- `type` - The adapter type (e.g. `mongodb` or `redis`)
+- `ready` - A promise that resolves when the synchronization mechanism is ready
 
-- __size__ - Max size of the collection in bytes, default is 5mb
-- __max__ - Max amount of documents in the collection
-- __retryInterval__ - Time in ms to wait if no docs are found, default is 200ms
-- __recreate__ - Recreate the tailable cursor when an error occurs (default is `true`)
+```js
+app.sync.ready.then(() => {
+  // Do things here
+});
+```
 
-### Use with Redis:
+## Adapters
 
-- __db__ - The Redis connection string (e.g. `redis://localhost:6379`) or database object
-- __connect__ - A callback for when the Redis connection has been established
+`feathers-sync` can be initialized either by specifying the type of adapter through the `uri` (e.g. `mongodb://localhost:27017/sync`) or using e.g. `sync.mongodb` directly:
 
-### Use with AMQP
+```js
+// Configure MongoDB
+app.configure(sync({
+  uri: 'mongodb://localhost:27017/sync',
+  collection: 'events'
+}));
 
-- __uri__ - The AMQP connection string (e.g. `amqp://guest:guest@localhost:5672`)
-- __prefix__ - A prefix that will be applied to all queues, exchanges and messages created by sync
-- __amqpConnectionOptions__ - AMQP connection options
+// Configure MongoDB with an existing connection
+app.configure(sync.mongodb({
+  db: existingConnection
+  collection: 'events'
+}));
+
+// Configure Redis
+app.configure(sync({
+  uri: 'redis://localhost:6379'
+}));
+
+app.configure(sync.redis({
+  db: redisInstance
+}));
+```
+
+### MongoDB
+
+- `uri` - The connection string (must start with `mongodb://`)
+- `db` - The MongoDB database object or connection string (alias for `uri`)
+- `collection` (default: `events`) - The name of the capped event collection
+- `mubsub` - Settings to be passed to [mubsub](https://github.com/scttnlsn/mubsub) (e.g. `{authSource:'admin'}`)
+- `channel` - Mubsub channel synchronization options:
+  - `size` (default: `5mb`) - Max size of the collection in bytes
+  - `max` - Max amount of documents in the collection
+  - `retryInterval` (default: `200ms`) - Time in ms to wait if no docs are found
+  - `recreate` (default: `true`) - Recreate the tailable cursor when an error occurs (default is `true`)
+
+### Redis
+
+- `uri` - The connection string (must start with `redis://`)
+- `db` - The Redis database object or connection string (e.g. `redis://localhost:6379`)
+- `key` - The key under which all synchronization events will be stored (default: `feathers-sync`)
+
+### AMQP
+
+- `uri` - The AMQP connection string (e.g. `amqp://guest:guest@localhost:5672`).
+- `key` (default: `feathers-sync`) - The name exchange where sync messages will be published
+- `amqpConnectionOptions` - AMQP [connection options](http://www.squaremobius.net/amqp.node/channel_api.html#connect)
 
 ## How it works
 
@@ -64,11 +108,11 @@ Additionally you can pass the original sync options:
 
 ## Caveats
 
-When listening to service events with this, all events are going to get propagated to all clients. This means, that your event listeners should not perform any actions that change the global state (e.g. write something into the database) because every client will perform the same action.
+When listening to service events with `feathers-sync`, all events are going to get propagated to all clients. This means, that your event listeners should not perform any actions that change the global state (e.g. write something into the database) because every server instance will perform the same action.
 
-Instead, event listeners should only be used to update the local state (e.g. a local cache) and send real-time updates to all connected clients, e.g. all browsers listening to websocket events.
+Instead, event listeners should only be used to update the local state (e.g. a local cache) and send real-time updates to all its clients.
 
-If you need to perform actions, for example setting up a first blog post after a new user has been created add it to the service method itself (which will only run on its own instance) or use [feather-hooks](https://github.com/feathersjs/feathers-hooks) after hooks.
+If you need to perform actions, for example setting up a first blog post after a new user has been created, add it to the service method itself (which will only run on its own instance) or use a [Feathers after hook](https://docs.feathersjs.com/api/hooks.html).
 
 ## License
 
