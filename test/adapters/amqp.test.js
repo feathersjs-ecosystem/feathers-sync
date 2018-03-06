@@ -1,6 +1,6 @@
 const assert = require('assert');
 const _app = require('./app');
-const createApp = _app('amqp', {
+const createApp = _app({
   uri: 'amqp://guest:guest@localhost:5672'
 });
 
@@ -19,6 +19,11 @@ describe('feathers-sync AMQP tests', () => {
 
       return app3.sync.ready;
     });
+  });
+
+  it('initialized with amqp adapter', () => {
+    assert.ok(app1.sync);
+    assert.equal(app1.sync.type, 'amqp');
   });
 
   it('creating todo on app1 trigger created on all apps with hook context', done => {
