@@ -1,7 +1,7 @@
 const assert = require('assert');
 const _app = require('./app');
-const createApp = _app('mongodb', {
-  db: 'mongodb://localhost:27017/feathers-sync'
+const createApp = _app({
+  uri: 'mongodb://localhost:27017/feathers-sync'
 });
 
 describe('feathers-sync MongoDB tests', () => {
@@ -19,6 +19,11 @@ describe('feathers-sync MongoDB tests', () => {
 
       return app3.sync.ready;
     });
+  });
+
+  it('initialized with mongodb adapter', () => {
+    assert.ok(app1.sync);
+    assert.equal(app1.sync.type, 'mongodb');
   });
 
   it('creating todo on app1 trigger created on all apps with hook context', done => {

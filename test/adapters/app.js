@@ -1,9 +1,9 @@
 const feathers = require('@feathersjs/feathers');
-const sync = require('../lib');
+const sync = require('../../lib');
 
-module.exports = (name, options) => {
+module.exports = options => {
   return () => feathers()
-    .configure(sync[name](options))
+    .configure(sync(options))
     .use('/todo', {
       events: ['custom'],
       create (data) {

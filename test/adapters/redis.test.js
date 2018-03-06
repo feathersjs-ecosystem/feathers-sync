@@ -1,7 +1,7 @@
 const assert = require('assert');
 const _app = require('./app');
-const createApp = _app('redis', {
-  db: 'redis://localhost:6379'
+const createApp = _app({
+  uri: 'redis://localhost:6379'
 });
 
 describe('feathers-sync Redis tests', () => {
@@ -19,6 +19,11 @@ describe('feathers-sync Redis tests', () => {
 
       return app3.sync.ready;
     });
+  });
+
+  it('initialized with redis adapter', () => {
+    assert.ok(app1.sync);
+    assert.equal(app1.sync.type, 'redis');
   });
 
   it('creating todo on app1 trigger created on all apps with hook context', done => {
