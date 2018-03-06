@@ -70,19 +70,8 @@ Instead, event listeners should only be used to update the local state (e.g. a l
 
 If you need to perform actions, for example setting up a first blog post after a new user has been created add it to the service method itself (which will only run on its own instance) or use [feather-hooks](https://github.com/feathersjs/feathers-hooks) after hooks.
 
-## Changelog
-
-__0.1.0__
-
-- Can now use Redis or Mongo
-- Initial release
-
-## Author
-
-- [David Luecke](https://github.com/daffl)
-
 ## License
 
-Copyright (c) 2015 David Luecke
+Copyright (c) 2018 Feathers contributors
 
 Licensed under the [MIT license](LICENSE).
