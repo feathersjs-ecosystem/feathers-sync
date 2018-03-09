@@ -21,7 +21,7 @@
   "engines": {
     "node": ">= 6"
   },
-  "main": "src/sync.js",
+  "main": "lib/",
   "scripts": {
     "publish": "git push origin --tags && npm run changelog && git push origin",
     "changelog": "github_changelog_generator --no-issues && git add CHANGELOG.md && git commit -am \"Updating changelog\"",
