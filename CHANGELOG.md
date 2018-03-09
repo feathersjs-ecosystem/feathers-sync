@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.0.1](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.0.1) (2018-03-09)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.0.0...v1.0.1)
+
 ## [v1.0.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.0.0) (2018-03-06)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v0.1.4...v1.0.0)
 
