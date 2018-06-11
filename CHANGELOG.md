@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.0.2](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.0.2) (2018-06-11)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.0.1...v1.0.2)
+
+**Merged pull requests:**
+
+- Update insecure dependencies [\#81](https://github.com/feathersjs-ecosystem/feathers-sync/pull/81) ([daffl](https://github.com/daffl))
+
 ## [v1.0.1](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.0.1) (2018-03-09)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.0.0...v1.0.1)
 
