@@ -10,19 +10,22 @@ module.exports = function (config) {
   return function () {
     var oldSetup = this.setup;
 
+    this.syncService = function (path) {
+      var service = this.services[path];
+      service._serviceEvents.forEach(function (event) {
+        var ev = path + ' ' + event;
+        debug('subscribing to handler %s', ev);
+        channel.subscribe(ev, function (data) {
+          debug('got event, calling old emit %s', ev);
+          service._emit.call(service, event, data); // eslint-disable-line no-useless-call
+        });
+      });
+    };
+
     this.setup = function () {
       var result = oldSetup.apply(this, arguments);
-      var services = this.services;
-      Object.keys(services).forEach(function (path) {
-        var service = services[path];
-        service._serviceEvents.forEach(function (event) {
-          var ev = path + ' ' + event;
-          debug('subscribing to handler %s', ev);
-          channel.subscribe(ev, function (data) {
-            debug('got event, calling old emit %s', ev);
-            service._emit.call(service, event, data); // eslint-disable-line no-useless-call
-          });
-        });
+      Object.keys(this.services).forEach((path) => {
+        this.syncService(path);
       });
       return result;
     };
@@ -47,8 +50,7 @@ module.exports = function (config) {
 
     if (this.version && parseInt(this.version, 10) >= 3) {
       this.mixins.push(configurePlugin);
-    }
-    else {
+    } else {
       this.providers.push((path, service) => configurePlugin(service, path));
     }
 

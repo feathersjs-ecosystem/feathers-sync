@@ -32,7 +32,7 @@ module.exports = function (config) {
       return result;
     };
 
-    function configurePlugin(service, path) {
+    function configurePlugin (service, path) {
       if (typeof service.emit !== 'function' || typeof service.on !== 'function') {
         return;
       }
@@ -57,8 +57,7 @@ module.exports = function (config) {
 
     if (this.version && parseInt(this.version, 10) >= 3) {
       this.mixins.push(configurePlugin);
-    }
-    else {
+    } else {
       this.providers.push((path, service) => configurePlugin(service, path));
     }
   };
