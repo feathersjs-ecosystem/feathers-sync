@@ -69,7 +69,7 @@ describe('feathers-sync MongoDB tests', () => {
         assert.equal(context.service, app.service('todo'));
         assert.equal(context.app, app);
         assert.deepEqual(context.params, { query });
-        
+
         count++;
         if (count === 3) {
           done();
