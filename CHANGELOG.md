@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.0.3](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.0.3) (2018-08-05)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.0.2...v1.0.3)
+
+**Merged pull requests:**
+
+-  Send safely stringified data to MongoDB [\#85](https://github.com/feathersjs-ecosystem/feathers-sync/pull/85) ([daffl](https://github.com/daffl))
+
 ## [v1.0.2](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.0.2) (2018-06-11)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.0.1...v1.0.2)
 
@@ -63,7 +70,6 @@
 **Merged pull requests:**
 
 - disallow yoda http://eslint.org/docs/rules/yoda.html [\#4](https://github.com/feathersjs-ecosystem/feathers-sync/pull/4) ([mastertinner](https://github.com/mastertinner))
-- redis adapter [\#2](https://github.com/feathersjs-ecosystem/feathers-sync/pull/2) ([slajax](https://github.com/slajax))
 
 
 
