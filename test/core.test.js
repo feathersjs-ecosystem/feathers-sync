@@ -17,26 +17,31 @@ describe('feathers-sync core tests', () => {
   });
 
   it('sends sync-out for service events', done => {
+    const message = { message: 'This is a test' };
+
     app.once('sync-out', data => {
-      assert.deepEqual(data, {
-        event: 'created',
-        path: 'todo',
-        data: { message: 'This is a test' },
-        context: {
-          data: { message: 'This is a test' },
-          params: {},
-          type: 'after',
-          method: 'create',
+      try {
+        assert.deepEqual(data, {
+          event: 'created',
           path: 'todo',
-          result: { message: 'This is a test' }
-        }
-      });
-      done();
+          data: message,
+          context: {
+            arguments: [ message ],
+            data: message,
+            params: {},
+            type: 'after',
+            method: 'create',
+            path: 'todo',
+            result: message
+          }
+        });
+        done();
+      } catch (error) {
+        done(error);
+      }
     });
 
-    app.service('todo').create({
-      message: 'This is a test'
-    });
+    app.service('todo').create(message);
   });
 
   it('sends sync-out for custom events', done => {
