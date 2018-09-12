@@ -51,6 +51,10 @@ app.sync.ready.then(() => {
 });
 ```
 
+### Disabling synchronization
+
+
+
 ## Adapters
 
 `feathers-sync` can be initialized either by specifying the type of adapter through the `uri` (e.g. `mongodb://localhost:27017/sync`) or using e.g. `sync.mongodb` directly:
