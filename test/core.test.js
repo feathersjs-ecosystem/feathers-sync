@@ -1,10 +1,10 @@
 const assert = require('assert');
 const feathers = require('@feathersjs/feathers');
-const core = require('../lib/core');
+const sync = require('../lib/core');
 
 describe('feathers-sync core tests', () => {
   const app = feathers()
-    .configure(core)
+    .configure(sync)
     .use('/todo', {
       events: ['custom'],
       create (data) {
@@ -13,7 +13,7 @@ describe('feathers-sync core tests', () => {
     });
 
   it('configuring twice does nothing', () => {
-    app.configure(core);
+    app.configure(sync);
   });
 
   it('sends sync-out for service events', done => {
@@ -42,6 +42,35 @@ describe('feathers-sync core tests', () => {
     });
 
     app.service('todo').create(message);
+  });
+
+  it('can skip sending sync event', done => {
+    const message = 'This is a test';
+    const handler = () => {
+      done(new Error('Should never get here'));
+    };
+
+    app.service('todo').once('created', todo => {
+      assert.equal(todo.message, message);
+      app.removeListener('sync-out', handler);
+      done();
+    });
+
+    app.once('sync-out', handler);
+
+    let synced = false;
+
+    app.service('todo').hooks({
+      before (context) {
+        if (!synced) {
+          context[sync.SYNC] = false;
+          synced = true;
+        }
+
+        return context;
+      }
+    });
+    app.service('todo').create({ message });
   });
 
   it('sends sync-out for custom events', done => {
