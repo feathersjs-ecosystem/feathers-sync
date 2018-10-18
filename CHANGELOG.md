@@ -1,5 +1,13 @@
 # Change Log
 
+## [v1.1.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.1.0) (2018-10-18)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.0.3...v1.1.0)
+
+**Merged pull requests:**
+
+- Allow to disable synchronization in a hook [\#97](https://github.com/feathersjs-ecosystem/feathers-sync/pull/97) ([daffl](https://github.com/daffl))
+- Update debug to the latest version 🚀 [\#89](https://github.com/feathersjs-ecosystem/feathers-sync/pull/89) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v1.0.3](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.0.3) (2018-08-05)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.0.2...v1.0.3)
 
@@ -70,6 +78,7 @@
 **Merged pull requests:**
 
 - disallow yoda http://eslint.org/docs/rules/yoda.html [\#4](https://github.com/feathersjs-ecosystem/feathers-sync/pull/4) ([mastertinner](https://github.com/mastertinner))
+- redis adapter [\#2](https://github.com/feathersjs-ecosystem/feathers-sync/pull/2) ([slajax](https://github.com/slajax))
 
 
 
