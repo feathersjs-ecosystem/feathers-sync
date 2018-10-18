@@ -46,15 +46,17 @@ describe('feathers-sync core tests', () => {
 
   it('can skip sending sync event', done => {
     const message = 'This is a test';
+    const handler = () => {
+      done(new Error('Should never get here'));
+    };
 
     app.service('todo').once('created', todo => {
       assert.equal(todo.message, message);
+      app.removeListener('sync-out', handler);
       done();
     });
 
-    app.once('sync-out', () => {
-      done(new Error('Should never get here'));
-    });
+    app.once('sync-out', handler);
 
     let synced = false;
 

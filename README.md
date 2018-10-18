@@ -53,7 +53,24 @@ app.sync.ready.then(() => {
 
 ### Disabling synchronization
 
+`feathers-sync` can be disabled on the service method call level in a hook by setting the `require('feathers-sync').SYNC` property on the hook context to `false`:
 
+```js
+const { SYNC } = require('feathers-sync');
+
+app.service('messages').hooks({
+  after: {
+    create(context) {
+      // Don't synchronize if more than 1000 items were created at once
+      if(context.result.length > 1000) {
+        context[SYNC] = false;
+      }
+
+      return context;
+    }
+  }
+});
+```
 
 ## Adapters
 
