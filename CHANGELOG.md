@@ -1,5 +1,13 @@
 # Change Log
 
+## [v1.1.1](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.1.1) (2019-01-31)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.1.0...v1.1.1)
+
+**Merged pull requests:**
+
+- Fix export of symbol to disable syncing [\#107](https://github.com/feathersjs-ecosystem/feathers-sync/pull/107) ([daffl](https://github.com/daffl))
+- Update semistandard to the latest version 🚀 [\#98](https://github.com/feathersjs-ecosystem/feathers-sync/pull/98) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v1.1.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.1.0) (2018-10-18)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.0.3...v1.1.0)
 
