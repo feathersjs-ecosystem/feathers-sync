@@ -23,4 +23,10 @@ describe('feathers-sync tests', () => {
       }));
     }, /something is an invalid adapter/);
   });
+
+  it('exports SYNC symbol', () => {
+    const { SYNC } = sync;
+
+    assert.ok(typeof SYNC !== 'undefined');
+  });
 });
