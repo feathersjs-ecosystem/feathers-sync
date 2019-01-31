@@ -21,7 +21,7 @@ describe('feathers-sync core tests', () => {
 
     app.once('sync-out', data => {
       try {
-        assert.deepEqual(data, {
+        assert.deepStrictEqual(data, {
           event: 'created',
           path: 'todo',
           data: message,
@@ -51,7 +51,7 @@ describe('feathers-sync core tests', () => {
     };
 
     app.service('todo').once('created', todo => {
-      assert.equal(todo.message, message);
+      assert.strictEqual(todo.message, message);
       app.removeListener('sync-out', handler);
       done();
     });
@@ -75,7 +75,7 @@ describe('feathers-sync core tests', () => {
 
   it('sends sync-out for custom events', done => {
     app.once('sync-out', data => {
-      assert.deepEqual(data, {
+      assert.deepStrictEqual(data, {
         event: 'custom',
         path: 'todo',
         data: 'testing',
@@ -91,7 +91,7 @@ describe('feathers-sync core tests', () => {
     const todo = app.service('todo');
 
     todo.once('something', data => {
-      assert.equal(data, 'test');
+      assert.strictEqual(data, 'test');
       done();
     });
     todo.emit('something', 'test');
@@ -99,11 +99,11 @@ describe('feathers-sync core tests', () => {
 
   it('sync-in event gets turned into service event', done => {
     app.service('todo').once('created', (data, context) => {
-      assert.deepEqual(data, { message: 'This is a test' });
-      assert.equal(context.app, app);
-      assert.equal(context.service, app.service('todo'));
-      assert.equal(context.method, 'create');
-      assert.equal(context.type, 'after');
+      assert.deepStrictEqual(data, { message: 'This is a test' });
+      assert.strictEqual(context.app, app);
+      assert.strictEqual(context.service, app.service('todo'));
+      assert.strictEqual(context.method, 'create');
+      assert.strictEqual(context.type, 'after');
       done();
     });
     app.emit('sync-in', {

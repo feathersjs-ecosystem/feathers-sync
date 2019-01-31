@@ -23,7 +23,7 @@ describe('feathers-sync AMQP tests', () => {
 
   it('initialized with amqp adapter', () => {
     assert.ok(app1.sync);
-    assert.equal(app1.sync.type, 'amqp');
+    assert.strictEqual(app1.sync.type, 'amqp');
   });
 
   it('creating todo on app1 trigger created on all apps with hook context', done => {
@@ -31,13 +31,13 @@ describe('feathers-sync AMQP tests', () => {
     let count = 0;
     const onCreated = app => {
       app.service('todo').once('created', (data, context) => {
-        assert.deepEqual(original, data);
+        assert.deepStrictEqual(original, data);
         assert.ok(context);
-        assert.deepEqual(context.result, data);
-        assert.equal(context.method, 'create');
-        assert.equal(context.type, 'after');
-        assert.equal(context.service, app.service('todo'));
-        assert.equal(context.app, app);
+        assert.deepStrictEqual(context.result, data);
+        assert.strictEqual(context.method, 'create');
+        assert.strictEqual(context.type, 'after');
+        assert.strictEqual(context.service, app.service('todo'));
+        assert.strictEqual(context.app, app);
 
         count++;
         if (count === 3) {
@@ -51,7 +51,7 @@ describe('feathers-sync AMQP tests', () => {
     onCreated(app3);
 
     app1.service('todo').create(original).then(data =>
-      assert.deepEqual(original, data)
+      assert.deepStrictEqual(original, data)
     ).catch(done);
   });
 });
