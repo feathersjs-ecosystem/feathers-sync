@@ -1,5 +1,13 @@
 # Change Log
 
+## [v1.1.2](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.1.2) (2019-07-16)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.1.1...v1.1.2)
+
+**Merged pull requests:**
+
+- Update all dependencies to latest [\#114](https://github.com/feathersjs-ecosystem/feathers-sync/pull/114) ([daffl](https://github.com/daffl))
+- identify adaptor name by search in protocol name of uri [\#113](https://github.com/feathersjs-ecosystem/feathers-sync/pull/113) ([msudgh](https://github.com/msudgh))
+
 ## [v1.1.1](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.1.1) (2019-01-31)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.1.0...v1.1.1)
 
