@@ -5,7 +5,7 @@ services:
   - rabbitmq
 node_js:
   - node
-  - '6'
+  - 10
 before_script:
   - sleep 60
 sudo: false
