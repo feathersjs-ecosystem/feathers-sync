@@ -26,7 +26,7 @@ describe('feathers-sync core tests', () => {
           path: 'todo',
           data: message,
           context: {
-            arguments: [ message ],
+            arguments: [message],
             data: message,
             params: {},
             type: 'after',
