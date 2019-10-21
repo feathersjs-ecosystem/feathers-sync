@@ -3,9 +3,10 @@ services:
   - mongodb
   - redis-server
   - rabbitmq
-apt:
-  packages:
-  - rabbitmq-server 
+addons:
+  apt:
+    packages:
+    - rabbitmq-server 
 node_js:
   - node
   - 10
