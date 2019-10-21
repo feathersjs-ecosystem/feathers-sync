@@ -3,9 +3,11 @@ services:
   - mongodb
   - redis-server
   - rabbitmq
+apt:
+  packages:
+  - rabbitmq-server 
 node_js:
   - node
   - 10
 before_script:
   - sleep 60
-sudo: false
