@@ -1,5 +1,14 @@
 # Change Log
 
+## [v1.1.3](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.1.3) (2019-10-22)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.1.2...v1.1.3)
+
+**Merged pull requests:**
+
+- Updated AMQP queue to auto-delete. [\#129](https://github.com/feathersjs-ecosystem/feathers-sync/pull/129) ([deskoh](https://github.com/deskoh))
+- Update all dependencies [\#124](https://github.com/feathersjs-ecosystem/feathers-sync/pull/124) ([daffl](https://github.com/daffl))
+- Update dependencies and Node versions [\#117](https://github.com/feathersjs-ecosystem/feathers-sync/pull/117) ([daffl](https://github.com/daffl))
+
 ## [v1.1.2](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.1.2) (2019-07-16)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.1.1...v1.1.2)
 
