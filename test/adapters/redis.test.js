@@ -1,10 +1,12 @@
 const assert = require('assert');
+const bson = require('bson');
 const _app = require('./app');
-const createApp = _app({
-  uri: 'redis://localhost:6379'
-});
 
 describe('feathers-sync Redis tests', () => {
+  const createApp = _app({
+    uri: 'redis://localhost:6379'
+  });
+
   let app1, app2, app3;
 
   before(() => {
@@ -53,5 +55,55 @@ describe('feathers-sync Redis tests', () => {
     app1.service('todo').create(original).then(data =>
       assert.deepStrictEqual(original, data)
     ).catch(done);
+  });
+});
+
+describe('feathers-sync Redis custom serializer / deserializer tests', () => {
+  const createApp = _app({
+    uri: 'redis://localhost:6379',
+    key: 'feathers-sync2',
+    redisOptions: { return_buffers: true },
+    serialize: bson.serialize,
+    deserialize: bson.deserialize
+  });
+
+  let app1, app2, app3;
+
+  before(() => {
+    app1 = createApp();
+
+    return app1.sync.ready.then(() => {
+      app2 = createApp();
+
+      return app2.sync.ready;
+    }).then(() => {
+      app3 = createApp();
+
+      return app3.sync.ready;
+    });
+  });
+
+  it('should sync data with binary serializer', done => {
+    const original = { test: 'data', date: new Date() };
+    let count = 0;
+    const onCreated = app => {
+      app.service('todo').once('created', (data, context) => {
+        assert.strictEqual(original.date.getTime(), data.date.getTime());
+        assert.strictEqual(context.result.date.getTime(), data.date.getTime());
+
+        count++;
+        if (count === 3) {
+          done();
+        }
+      });
+    };
+
+    onCreated(app1);
+    onCreated(app2);
+    onCreated(app3);
+
+    app1.service('todo').create(original).then(data => {
+      assert.strictEqual(original.date.getTime(), data.date.getTime());
+    }).catch(done);
   });
 });

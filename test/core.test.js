@@ -12,6 +12,11 @@ describe('feathers-sync core tests', () => {
       }
     });
 
+  app.sync = {
+    serialize: data => data,
+    deserialize: data => data
+  };
+
   it('configuring twice does nothing', () => {
     app.configure(sync);
   });
