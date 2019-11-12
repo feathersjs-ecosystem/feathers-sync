@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.2.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.2.0) (2019-11-12)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.1.3...v1.2.0)
+
+**Merged pull requests:**
+
+- Custom serializer / deserializer support [\#130](https://github.com/feathersjs-ecosystem/feathers-sync/pull/130) ([deskoh](https://github.com/deskoh))
+
 ## [v1.1.3](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v1.1.3) (2019-10-22)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.1.2...v1.1.3)
 
