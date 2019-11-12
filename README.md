@@ -116,6 +116,7 @@ app.configure(sync.redis({
 - `uri` - The connection string (must start with `redis://`)
 - `db` - The Redis database object or connection string (e.g. `redis://localhost:6379`)
 - `key` - The key under which all synchronization events will be stored (default: `feathers-sync`)
+- `redisOptions` - Redis [client options](http://redis.js.org/#api-rediscreateclient)
 
 ### AMQP
 
@@ -134,6 +135,27 @@ When listening to service events with `feathers-sync`, all events are going to g
 Instead, event listeners should only be used to update the local state (e.g. a local cache) and send real-time updates to all its clients.
 
 If you need to perform actions, for example setting up a first blog post after a new user has been created, add it to the service method itself (which will only run on its own instance) or use a [Feathers after hook](https://docs.feathersjs.com/api/hooks.html).
+
+Event data are serialized and deserialized using `JSON.stringify` and `JSON.parse`. This could pose a problem if the event data contains circular reference or has `Date` values (`Date` is not a valid JSON value ([source](https://www.w3schools.com/js/js_json_datatypes.asp)) and will be serialized to a string).
+
+## Custom Serializer / Deserializer
+
+To provide a custom serializer / deserializer:
+
+```js
+// BSON can serialize / deserialize `Date` values.
+const bson = require('bson')
+
+app.configure(sync({
+  uri: 'redis://localhost:6379',
+  // Replies will be sent to callbacks as Buffers instead of Strings for bson.deserialize to work.
+  redisOptions: { return_buffers: true },
+  serialize: bson.serialize,
+  deserialize: bson.deserialize,
+}));
+```
+
+> `Redis` and `AMQP` can support binary serialization / deserialization (i.e. `Buffer` data) but not `MongoDB`.
 
 ## Writing custom adapters
 
@@ -161,8 +183,8 @@ module.exports = config => {
         // reject on connection error
       })
     };
-    
-    // Sent every time a service 
+
+    // Sent every time a service
     app.on('sync-out', data => {
       // Publish `data` to the message queue
       myMessagingService.publish(data);
