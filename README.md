@@ -176,6 +176,6 @@ The `data` for the `sync-in` event should be in the same form as the one that is
 
 ## License
 
-Copyright (c) 2018 Feathers contributors
+Copyright (c) 2019 Feathers contributors
 
 Licensed under the [MIT license](LICENSE).
