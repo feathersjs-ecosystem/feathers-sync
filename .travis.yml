@@ -10,4 +10,4 @@ node_js:
   - node
   - 12
 before_script:
-  - sudo systemctl start rabbitmq-server.service
+  - sleep 30
