@@ -1,4 +1,5 @@
 language: node_js
+dist: xenial
 services:
   - redis-server
 addons:
@@ -9,4 +10,4 @@ node_js:
   - node
   - 12
 before_script:
-  - sleep 60
+  - sudo systemctl start rabbitmq-server.service
