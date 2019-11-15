@@ -1,14 +1,12 @@
 language: node_js
 services:
-  - mongodb
   - redis-server
-  - rabbitmq
 addons:
   apt:
     packages:
     - rabbitmq-server 
 node_js:
   - node
-  - 10
+  - 12
 before_script:
   - sleep 60
