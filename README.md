@@ -148,6 +148,9 @@ const myMessagingService = {
 }
 
 module.exports = config => {
+  // If adapter supports configurable serializer / deserializer (defaults to `JSON.stringfy` / `JSON.parse`)
+  const { deserialize, serialize } = config;
+
   return app => {
     app.configure(core);
     app.sync = {
@@ -155,7 +158,9 @@ module.exports = config => {
       ready: new Promise((resolve, reject) => {
         // resolve when client is ready
         // reject on connection error
-      })
+      }),
+      serialize,
+      deserialize
     };
 
     // Sent every time a service
