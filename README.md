@@ -36,6 +36,8 @@ app.configure(sync({
 app.use('/todos', todoService);
 ```
 
+> Note that configuring sync should happen before configuring services
+
 ### `app.sync`
 
 When set up, `app.sync` will contain the following information:
@@ -83,6 +85,11 @@ app.configure(sync({
 app.configure(sync.redis({
   db: redisInstance
 }));
+
+// Configure Redis using an existing redisClient
+app.configure(sync.redis({
+  redisClient: redisClient 
+}))
 ```
 
 ### Redis
@@ -90,6 +97,7 @@ app.configure(sync.redis({
 - `uri` - The connection string (must start with `redis://`)
 - `db` - The Redis database object or connection string (e.g. `redis://localhost:6379`)
 - `key` - The key under which all synchronization events will be stored (default: `feathers-sync`)
+- `redisClient` - An existing instance of redisClient
 - `redisOptions` - Redis [client options](http://redis.js.org/#api-rediscreateclient)
 
 ### AMQP
