@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2.1.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v2.1.0) (2020-04-09)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v2.0.0...v2.1.0)
+
+**Merged pull requests:**
+
+- Added support for using an existing Redis Client instead of creating … [\#146](https://github.com/feathersjs-ecosystem/feathers-sync/pull/146) ([fbarzin](https://github.com/fbarzin))
+- Update redis to the latest version 🚀 [\#144](https://github.com/feathersjs-ecosystem/feathers-sync/pull/144) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update mocha to the latest version 🚀 [\#142](https://github.com/feathersjs-ecosystem/feathers-sync/pull/142) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Fix flaky Travis CI test [\#139](https://github.com/feathersjs-ecosystem/feathers-sync/pull/139) ([daffl](https://github.com/daffl))
+- Updated README for custom adapters. [\#138](https://github.com/feathersjs-ecosystem/feathers-sync/pull/138) ([deskoh](https://github.com/deskoh))
+
 ## [v2.0.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v2.0.0) (2019-11-15)
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v1.2.0...v2.0.0)
 
