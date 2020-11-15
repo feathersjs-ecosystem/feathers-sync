@@ -3,7 +3,7 @@ const _app = require('./app');
 
 describe('feathers-sync NATS tests', () => {
   const createApp = _app({
-    uri: 'nats://localhost:5555',
+    uri: 'nats://localhost:4222',
     key: 'feathers-sync2'
   });
 
