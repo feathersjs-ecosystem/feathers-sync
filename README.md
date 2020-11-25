@@ -112,11 +112,9 @@ app.configure(sync.redis({
 
 ## Caveats
 
-When listening to service events with `feathers-sync`, all events are going to get propagated to all clients. This means, that your event listeners should not perform any actions that change the global state (e.g. write something into the database) because every server instance will perform the same action.
+With `feathers-sync` enabled all events are going to get propagated to every application instance. This means, that any event listeners registered _on the server_ should not perform any actions that change the global state (e.g. write something into the database or call to an external API) because it will end up running multiple times (once on each instance). Instead, event listeners should only be used to update the local state (e.g. a local cache) and send real-time updates to all its clients. 
 
-Instead, event listeners should only be used to update the local state (e.g. a local cache) and send real-time updates to all its clients.
-
-If you need to perform actions, for example setting up a first blog post after a new user has been created, add it to the service method itself (which will only run on its own instance) or use a [Feathers after hook](https://docs.feathersjs.com/api/hooks.html).
+If you need to perform actions, for example setting up a first blog post after a new user has been created, add it to the service method itself or use a [Feathers hook](https://docs.feathersjs.com/api/hooks.html) (both of which will only run once on the instance that is handling the request).
 
 Event data are serialized and deserialized using `JSON.stringify` and `JSON.parse`. This could pose a problem if the event data contains circular reference or has `Date` values (`Date` is not a valid JSON value ([source](https://www.w3schools.com/js/js_json_datatypes.asp)) and will be serialized to a string).
 
