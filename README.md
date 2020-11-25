@@ -110,17 +110,15 @@ app.configure(sync.redis({
 
 ![alt tag](https://raw.githubusercontent.com/PedroMD/feathers-sync/master/feathers-sync%20and%20real-time%20events-60.png)
 
-## Caveats
+## Caveat: Listening to service events
 
 With `feathers-sync` enabled all events are going to get propagated to every application instance. This means, that any event listeners registered _on the server_ should not perform any actions that change the global state (e.g. write something into the database or call to an external API) because it will end up running multiple times (once on each instance). Instead, event listeners should only be used to update the local state (e.g. a local cache) and send real-time updates to all its clients. 
 
 If you need to perform actions, for example setting up a first blog post after a new user has been created, add it to the service method itself or use a [Feathers hook](https://docs.feathersjs.com/api/hooks.html) (both of which will only run once on the instance that is handling the request).
 
-Event data are serialized and deserialized using `JSON.stringify` and `JSON.parse`. This could pose a problem if the event data contains circular reference or has `Date` values (`Date` is not a valid JSON value ([source](https://www.w3schools.com/js/js_json_datatypes.asp)) and will be serialized to a string).
-
 ## Custom Serializer / Deserializer
 
-To provide a custom serializer / deserializer:
+Event data are serialized and deserialized using `JSON.stringify` and `JSON.parse`. This could pose a problem if the event data contains circular reference or has `Date` values (`Date` is not a valid JSON value ([source](https://www.w3schools.com/js/js_json_datatypes.asp)) and will be serialized to a string). You can provide a custom serializer/deserializer like this:
 
 ```js
 // BSON can serialize / deserialize `Date` values.
