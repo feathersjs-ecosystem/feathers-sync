@@ -1,4 +1,4 @@
-name: Node.js CI
+name: CI
 on: [push, pull_request]
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
     - name: Start Redis
       uses: supercharge/redis-github-action@1.1.0
       with:
-        redis-version: ${{ matrix.redis-version }}
+        redis-version: '5'
     - name: Start AMQP
       uses: nijel/rabbitmq-action@v1.0.0
       with:

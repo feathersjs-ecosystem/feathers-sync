@@ -1,8 +1,6 @@
 # Feathers sync
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs-ecosystem/feathers-sync.svg)](https://greenkeeper.io/)
-
-[![Build Status](https://travis-ci.org/feathersjs-ecosystem/feathers-sync.png?branch=master)](https://travis-ci.org/feathersjs-ecosystem/feathers-sync)
+[![Node.js CI](https://github.com/feathersjs-ecosystem/feathers-sync/workflows/Node.js%20CI/badge.svg)](https://github.com/feathersjs-ecosystem/feathers-sync/actions?query=workflow%3A%22Node.js+CI%22)
 [![Dependency Status](https://img.shields.io/david/feathersjs-ecosystem/feathers-sync.svg?style=flat-square)](https://david-dm.org/feathersjs-ecosystem/feathers-sync)
 [![Download Status](https://img.shields.io/npm/dm/feathers-sync.svg?style=flat-square)](https://www.npmjs.com/package/feathers-sync)
 [![Slack Status](http://slack.feathersjs.com/badge.svg)](http://slack.feathersjs.com)
