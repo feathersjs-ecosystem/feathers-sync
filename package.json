@@ -49,13 +49,27 @@
   },
   "devDependencies": {
     "@feathersjs/feathers": "^4.5.2",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/npm": "^7.0.9",
+    "@semantic-release/release-notes-generator": "^9.0.1",
     "bson": "^4.0.3",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^7.1.0",
+    "semantic-release": "^17.3.1",
     "semistandard": "^14.2.0"
   },
   "mocha": {
     "timeout": 30000,
     "exit": true
+  },
+  "release": {
+    "branches": [
+      "release"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm"
+    ]
   }
 }
