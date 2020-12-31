@@ -1,0 +1,24 @@
+name: Node.js CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Start Redis
+      uses: supercharge/redis-github-action@1.1.0
+      with:
+        redis-version: ${{ matrix.redis-version }}
+    - name: Start AMQP
+      uses: nijel/rabbitmq-action@v1.0.0
+      with:
+        rabbitmq version: '5'
+    - run: npm ci
+    - run: npm test
