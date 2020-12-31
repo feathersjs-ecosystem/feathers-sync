@@ -16,9 +16,7 @@ jobs:
       uses: supercharge/redis-github-action@1.1.0
       with:
         redis-version: '5'
-    - name: Start AMQP
+    - name: Setup Rabbitmq
       uses: nijel/rabbitmq-action@v1.0.0
-      with:
-        rabbitmq version: '5'
     - run: npm ci
     - run: npm test
