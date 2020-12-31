@@ -11,7 +11,7 @@
 
 ## About
 
-When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed`) do not get propagated to other instances.
+When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed` and any custom defined events) do not get propagated to other instances.
 
 feathers-sync uses a messaging mechanism to propagate all events to all application instances. It currently supports:
 
