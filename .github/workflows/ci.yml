@@ -18,6 +18,6 @@ jobs:
         redis-version: '5'
     - name: Setup Rabbitmq
       uses: nijel/rabbitmq-action@v1.0.0
-    - run: sleep 10
+    - run: sleep 30
     - run: npm ci
     - run: npm test
