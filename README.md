@@ -3,7 +3,6 @@
 [![CI](https://github.com/feathersjs-ecosystem/feathers-sync/workflows/CI/badge.svg)](https://github.com/feathersjs-ecosystem/feathers-sync/actions?query=workflow%3ACI)
 [![Dependency Status](https://img.shields.io/david/feathersjs-ecosystem/feathers-sync.svg?style=flat-square)](https://david-dm.org/feathersjs-ecosystem/feathers-sync)
 [![Download Status](https://img.shields.io/npm/dm/feathers-sync.svg?style=flat-square)](https://www.npmjs.com/package/feathers-sync)
-[![Slack Status](http://slack.feathersjs.com/badge.svg)](http://slack.feathersjs.com)
 
 > Synchronize service events between application instances
 
