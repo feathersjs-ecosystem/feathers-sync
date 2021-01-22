@@ -69,8 +69,6 @@ app.service('messages').hooks({
 });
 ```
 
-Note that you will likely need to do this on your `/authentication` service as its create method is called frequently whenever you authenticate, including find and get requests.
-
 ## Adapters
 
 `feathers-sync` can be initialized either by specifying the type of adapter through the `uri` (e.g. `redis://localhost:6379`) or using e.g. `sync.redis` directly:
