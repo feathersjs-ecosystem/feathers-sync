@@ -102,7 +102,7 @@ app.configure(sync.redis({
 
 ### AMQP
 
-- `uri` - The connection string (must start with `redis://`)
+- `uri` - The AMQP connection string (e.g. `amqp://guest:guest@localhost:5672`).
 - `key` (default: `feathers-sync`) - The name exchange where sync messages will be published
 - `amqpConnectionOptions` - AMQP [connection options](http://www.squaremobius.net/amqp.node/channel_api.html#connect)
 
@@ -110,6 +110,8 @@ app.configure(sync.redis({
 
 - `uri` - The connection string (must start with `nats://`)
 - `key` (default: `feathers-sync`) - The name exchange where sync messages will be published
+
+
 ## How it works
 
 ![alt tag](https://raw.githubusercontent.com/PedroMD/feathers-sync/master/feathers-sync%20and%20real-time%20events-60.png)
@@ -141,8 +143,7 @@ app.configure(sync({
 }));
 ```
 
-> `Redis` and `AMQP` can support binary serialization / deserialization (i.e. `Buffer` data). `NATS`
-> ``NATS` adapter does not support custom serialization / deserialization at current date
+> `Redis` and `AMQP` can support binary serialization / deserialization (i.e. `Buffer` data). `NATS` currently does not support custom serialization / deserialization/
 
 ## Writing custom adapters
 
