@@ -44,7 +44,8 @@
   "dependencies": {
     "amqplib": "^0.5.5",
     "debug": "^4.1.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
+    "nats": "^1.4.12",
     "redis": "^3.0.2"
   },
   "devDependencies": {
