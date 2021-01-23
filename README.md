@@ -8,7 +8,7 @@
 
 ## About
 
-When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed`) do not get propagated to other instances.
+When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed` and any custom defined events) do not get propagated to other instances.
 
 feathers-sync uses a messaging mechanism to propagate all events to all application instances. It currently supports:
 
@@ -104,6 +104,12 @@ app.configure(sync.redis({
 - `key` (default: `feathers-sync`) - The name exchange where sync messages will be published
 - `amqpConnectionOptions` - AMQP [connection options](http://www.squaremobius.net/amqp.node/channel_api.html#connect)
 
+### NATS
+
+- `uri` - The connection string (must start with `nats://`)
+- `key` (default: `feathers-sync`) - The name exchange where sync messages will be published
+
+
 ## How it works
 
 ![alt tag](https://raw.githubusercontent.com/PedroMD/feathers-sync/master/feathers-sync%20and%20real-time%20events-60.png)
@@ -131,7 +137,7 @@ app.configure(sync({
 }));
 ```
 
-> `Redis` and `AMQP` can support binary serialization / deserialization (i.e. `Buffer` data).
+> `Redis` and `AMQP` can support binary serialization / deserialization (i.e. `Buffer` data). `NATS` currently does not support custom serialization / deserialization/
 
 ## Writing custom adapters
 
