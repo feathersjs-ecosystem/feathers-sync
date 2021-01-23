@@ -31,7 +31,7 @@
     "lint": "semistandard --fix",
     "mocha": "mocha --recursive test/",
     "test": "npm run lint && npm run coverage",
-    "coverage": "istanbul cover npm run mocha"
+    "coverage": "nyc npm run mocha"
   },
   "semistandard": {
     "env": [
@@ -42,22 +42,22 @@
     "src": "src"
   },
   "dependencies": {
-    "amqplib": "^0.5.5",
-    "debug": "^4.1.1",
+    "amqplib": "^0.6.0",
+    "debug": "^4.3.1",
     "lodash": "^4.17.20",
     "nats": "^1.4.12",
     "redis": "^3.0.2"
   },
   "devDependencies": {
-    "@feathersjs/feathers": "^4.5.2",
+    "@feathersjs/feathers": "^4.5.11",
     "@semantic-release/commit-analyzer": "^8.0.1",
-    "@semantic-release/npm": "^7.0.9",
+    "@semantic-release/npm": "^7.0.10",
     "@semantic-release/release-notes-generator": "^9.0.1",
-    "bson": "^4.0.3",
-    "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^7.1.0",
-    "semantic-release": "^17.3.1",
-    "semistandard": "^14.2.0"
+    "bson": "^4.2.2",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
+    "semantic-release": "^17.3.7",
+    "semistandard": "^16.0.0"
   },
   "mocha": {
     "timeout": 30000,
