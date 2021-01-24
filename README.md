@@ -6,6 +6,25 @@
 
 > Synchronize service events between application instances
 
+<!-- TOC -->
+
+- [Feathers sync](#feathers-sync)
+  - [About](#about)
+    - [Usage](#usage)
+    - [`app.sync`](#appsync)
+    - [Disabling synchronization](#disabling-synchronization)
+  - [Adapters](#adapters)
+    - [Redis](#redis)
+    - [AMQP](#amqp)
+    - [NATS](#nats)
+  - [How it works](#how-it-works)
+  - [Caveat: Listening to service events](#caveat-listening-to-service-events)
+  - [Custom Serializer / Deserializer](#custom-serializer--deserializer)
+  - [Writing custom adapters](#writing-custom-adapters)
+  - [License](#license)
+
+<!-- /TOC -->
+
 ## About
 
 When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed` and any custom defined events) do not get propagated to other instances.
@@ -189,6 +208,6 @@ The `data` for the `sync-in` event should be in the same form as the one that is
 
 ## License
 
-Copyright (c) 2019 Feathers contributors
+Copyright (c) 2021 Feathers contributors
 
 Licensed under the [MIT license](LICENSE).
