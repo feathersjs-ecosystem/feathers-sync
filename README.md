@@ -85,7 +85,7 @@ app.configure(sync.redis({
 
 // Configure Redis using an existing redisClient
 app.configure(sync.redis({
-  redisClient: redisClient 
+  redisClient: redisClient
 }))
 ```
 
@@ -96,6 +96,7 @@ app.configure(sync.redis({
 - `key` - The key under which all synchronization events will be stored (default: `feathers-sync`)
 - `redisClient` - An existing instance of redisClient
 - `redisOptions` - Redis [client options](http://redis.js.org/#api-rediscreateclient)
+- `subscriberEvent` - The event to listen for. Defaults to `message`. Could be `message_buffer` or `messageBuffer` depending on what Redis library is being used.
 
 ### AMQP
 
@@ -115,7 +116,7 @@ app.configure(sync.redis({
 
 ## Caveat: Listening to service events
 
-With `feathers-sync` enabled all events are going to get propagated to every application instance. This means, that any event listeners registered _on the server_ should not perform any actions that change the global state (e.g. write something into the database or call to an external API) because it will end up running multiple times (once on each instance). Instead, event listeners should only be used to update the local state (e.g. a local cache) and send real-time updates to all its clients. 
+With `feathers-sync` enabled all events are going to get propagated to every application instance. This means, that any event listeners registered _on the server_ should not perform any actions that change the global state (e.g. write something into the database or call to an external API) because it will end up running multiple times (once on each instance). Instead, event listeners should only be used to update the local state (e.g. a local cache) and send real-time updates to all its clients.
 
 If you need to perform actions, for example setting up a first blog post after a new user has been created, add it to the service method itself or use a [Feathers hook](https://docs.feathersjs.com/api/hooks.html) (both of which will only run once on the instance that is handling the request).
 
