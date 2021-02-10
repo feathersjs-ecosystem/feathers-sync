@@ -19,7 +19,7 @@
   "author": "Feathers contributors (https://feathersjs.com)",
   "contributors": [],
   "engines": {
-    "node": ">= 6"
+    "node": ">= 12"
   },
   "main": "lib/",
   "scripts": {

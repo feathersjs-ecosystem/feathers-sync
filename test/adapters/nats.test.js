@@ -8,15 +8,16 @@ describe('feathers-sync NATS tests', () => {
   });
 
   let app1, app2, app3;
-  before(() => {
+
+  before(async () => {
     app1 = createApp();
-    return app1.sync.ready.then(() => {
-      app2 = createApp();
-      return app2.sync.ready;
-    }).then(() => {
-      app3 = createApp();
-      return app3.sync.ready;
-    });
+    await app1.sync.ready;
+    
+    app2 = createApp();
+    await app2.sync.ready;
+
+    app3 = createApp();
+    await app3.sync.ready;
   });
 
   it('initialized with NATS adapter', () => {

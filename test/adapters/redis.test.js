@@ -9,18 +9,15 @@ describe('feathers-sync Redis tests', () => {
 
   let app1, app2, app3;
 
-  before(() => {
+  before(async () => {
     app1 = createApp();
+    await app1.sync.ready;
 
-    return app1.sync.ready.then(() => {
-      app2 = createApp();
+    app2 = createApp();
+    await app2.sync.ready;
 
-      return app2.sync.ready;
-    }).then(() => {
-      app3 = createApp();
-
-      return app3.sync.ready;
-    });
+    app3 = createApp();
+    await app3.sync.ready;
   });
 
   it('initialized with redis adapter', () => {
@@ -69,18 +66,15 @@ describe('feathers-sync Redis custom serializer / deserializer tests', () => {
 
   let app1, app2, app3;
 
-  before(() => {
+  before(async () => {
     app1 = createApp();
+    await app1.sync.ready;
 
-    return app1.sync.ready.then(() => {
-      app2 = createApp();
+    app2 = createApp();
+    await app2.sync.ready;
 
-      return app2.sync.ready;
-    }).then(() => {
-      app3 = createApp();
-
-      return app3.sync.ready;
-    });
+    app3 = createApp();
+    await app3.sync.ready;
   });
 
   it('should sync data with binary serializer', done => {
