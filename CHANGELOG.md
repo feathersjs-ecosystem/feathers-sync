@@ -1,5 +1,18 @@
 # Changelog
 
+## [v2.3.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v2.3.0) (2021-03-19)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v2.2.0...v2.3.0)
+
+**Implemented enhancements:**
+
+- \[Feature Request\] Add retry mechanism [\#143](https://github.com/feathersjs-ecosystem/feathers-sync/issues/143)
+
+**Merged pull requests:**
+
+- chore: Migrate to async/await and require Node 12 or later [\#161](https://github.com/feathersjs-ecosystem/feathers-sync/pull/161) ([daffl](https://github.com/daffl))
+- \[\#143\] amqp retry mechanism [\#160](https://github.com/feathersjs-ecosystem/feathers-sync/pull/160) ([fragilehm](https://github.com/fragilehm))
+
 ## [v2.2.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v2.2.0) (2021-01-24)
 
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v2.1.0...v2.2.0)
@@ -37,7 +50,6 @@
 
 **Merged pull requests:**
 
-- NATS support [\#149](https://github.com/feathersjs-ecosystem/feathers-sync/pull/149) ([ViljarVoidula](https://github.com/ViljarVoidula))
 - Added support for using an existing Redis Client instead of creating … [\#146](https://github.com/feathersjs-ecosystem/feathers-sync/pull/146) ([fbarzin](https://github.com/fbarzin))
 - Update redis to the latest version 🚀 [\#144](https://github.com/feathersjs-ecosystem/feathers-sync/pull/144) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 - Update mocha to the latest version 🚀 [\#142](https://github.com/feathersjs-ecosystem/feathers-sync/pull/142) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
@@ -283,7 +295,7 @@
 **Merged pull requests:**
 
 - disallow yoda http://eslint.org/docs/rules/yoda.html [\#4](https://github.com/feathersjs-ecosystem/feathers-sync/pull/4) ([mastertinner](https://github.com/mastertinner))
-- redis adapter [\#2](https://github.com/feathersjs-ecosystem/feathers-sync/pull/2) ([slajax](https://github.com/slajax))
+- redis adapter [\#2](https://github.com/feathersjs-ecosystem/feathers-sync/pull/2) ([kc-dot-io](https://github.com/kc-dot-io))
 
 
 
