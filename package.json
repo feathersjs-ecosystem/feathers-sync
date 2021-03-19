@@ -22,6 +22,7 @@
     "node": ">= 6"
   },
   "main": "lib/",
+  "types": "types/",
   "scripts": {
     "publish": "git push origin --tags && npm run changelog && git push origin",
     "changelog": "github_changelog_generator --user feathersjs-ecosystem --project feathers-sync && git add CHANGELOG.md && git commit -am \"Updating changelog\"",
