@@ -7,8 +7,8 @@ describe('feathers-sync core tests', () => {
     .configure(sync)
     .use('/todo', {
       events: ['custom'],
-      create (data) {
-        return Promise.resolve(data);
+      async create (data) {
+        return data;
       }
     });
 
