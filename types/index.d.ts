@@ -1,6 +1,6 @@
 import { Application } from "@feathersjs/feathers";
 
-// TypeScript Version: 3.0
+// TypeScript Version: 4.0
 export interface SyncOptions {
   key?: string;
   uri: string;
