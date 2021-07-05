@@ -1,5 +1,22 @@
 # Changelog
 
+## [Unreleased](https://github.com/feathersjs-ecosystem/feathers-sync/tree/HEAD)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v2.4.0...HEAD)
+
+**Merged pull requests:**
+
+- Add compatibility for v5 and update dependencies [\#167](https://github.com/feathersjs-ecosystem/feathers-sync/pull/167) ([daffl](https://github.com/daffl))
+
+## [v2.4.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v2.4.0) (2021-07-05)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v2.3.0...v2.4.0)
+
+**Closed issues:**
+
+- Needs update for Feathers v5 [\#166](https://github.com/feathersjs-ecosystem/feathers-sync/issues/166)
+- Issue with Google oAuth [\#164](https://github.com/feathersjs-ecosystem/feathers-sync/issues/164)
+
 ## [v2.3.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v2.3.0) (2021-03-19)
 
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v2.2.0...v2.3.0)
@@ -238,7 +255,7 @@
 
 **Fixed bugs:**
 
-- Mubsub config option fix [\#59](https://github.com/feathersjs-ecosystem/feathers-sync/pull/59) ([startupthekid](https://github.com/startupthekid))
+- Mubsub config option fix [\#59](https://github.com/feathersjs-ecosystem/feathers-sync/pull/59) ([thebarndog](https://github.com/thebarndog))
 
 **Closed issues:**
 
@@ -250,6 +267,18 @@
 
 - Update semistandard to the latest version 🚀 [\#57](https://github.com/feathersjs-ecosystem/feathers-sync/pull/57) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 - Update dependencies to enable Greenkeeper 🌴 [\#56](https://github.com/feathersjs-ecosystem/feathers-sync/pull/56) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- debug@2.3.0 breaks build ⚠️ [\#37](https://github.com/feathersjs-ecosystem/feathers-sync/pull/37) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update amqplib to version 0.5.0 🚀 [\#36](https://github.com/feathersjs-ecosystem/feathers-sync/pull/36) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- 👻😱 Node.js 0.10 is unmaintained 😱👻 [\#35](https://github.com/feathersjs-ecosystem/feathers-sync/pull/35) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- jshint —\> semistandard [\#34](https://github.com/feathersjs-ecosystem/feathers-sync/pull/34) ([corymsmith](https://github.com/corymsmith))
+- jshint@2.9.4 breaks build 🚨 [\#33](https://github.com/feathersjs-ecosystem/feathers-sync/pull/33) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- added a simple flowchart explaining how it works [\#30](https://github.com/feathersjs-ecosystem/feathers-sync/pull/30) ([PedroMD](https://github.com/PedroMD))
+- Update mocha to version 3.0.0 🚀 [\#27](https://github.com/feathersjs-ecosystem/feathers-sync/pull/27) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Add AMQP Adapter [\#12](https://github.com/feathersjs-ecosystem/feathers-sync/pull/12) ([tinque](https://github.com/tinque))
+- Update all dependencies 🌴 [\#10](https://github.com/feathersjs-ecosystem/feathers-sync/pull/10) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Fix broadcast wrong messages [\#9](https://github.com/feathersjs-ecosystem/feathers-sync/pull/9) ([thomaschaaf](https://github.com/thomaschaaf))
+- Update readme [\#7](https://github.com/feathersjs-ecosystem/feathers-sync/pull/7) ([mastertinner](https://github.com/mastertinner))
+- add redis to subtitle in readme [\#3](https://github.com/feathersjs-ecosystem/feathers-sync/pull/3) ([mastertinner](https://github.com/mastertinner))
 
 ## [v0.1.2](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v0.1.2) (2016-12-08)
 
@@ -263,21 +292,6 @@
 - Event not fired in socket on client [\#11](https://github.com/feathersjs-ecosystem/feathers-sync/issues/11)
 - Link to sync in README is broken [\#8](https://github.com/feathersjs-ecosystem/feathers-sync/issues/8)
 - TypeError: Cannot read property 'split' of undefined [\#6](https://github.com/feathersjs-ecosystem/feathers-sync/issues/6)
-
-**Merged pull requests:**
-
-- debug@2.3.0 breaks build ⚠️ [\#37](https://github.com/feathersjs-ecosystem/feathers-sync/pull/37) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- Update amqplib to version 0.5.0 🚀 [\#36](https://github.com/feathersjs-ecosystem/feathers-sync/pull/36) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- 👻😱 Node.js 0.10 is unmaintained 😱👻 [\#35](https://github.com/feathersjs-ecosystem/feathers-sync/pull/35) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- jshint —\> semistandard [\#34](https://github.com/feathersjs-ecosystem/feathers-sync/pull/34) ([corymsmith](https://github.com/corymsmith))
-- jshint@2.9.4 breaks build 🚨 [\#33](https://github.com/feathersjs-ecosystem/feathers-sync/pull/33) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- added a simple flowchart explaining how it works [\#30](https://github.com/feathersjs-ecosystem/feathers-sync/pull/30) ([PedroMD](https://github.com/PedroMD))
-- Update mocha to version 3.0.0 🚀 [\#27](https://github.com/feathersjs-ecosystem/feathers-sync/pull/27) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- Add AMQP Adapter [\#12](https://github.com/feathersjs-ecosystem/feathers-sync/pull/12) ([tinque](https://github.com/tinque))
-- Update all dependencies 🌴 [\#10](https://github.com/feathersjs-ecosystem/feathers-sync/pull/10) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- Fix broadcast wrong messages [\#9](https://github.com/feathersjs-ecosystem/feathers-sync/pull/9) ([thomaschaaf](https://github.com/thomaschaaf))
-- Update readme [\#7](https://github.com/feathersjs-ecosystem/feathers-sync/pull/7) ([mastertinner](https://github.com/mastertinner))
-- add redis to subtitle in readme [\#3](https://github.com/feathersjs-ecosystem/feathers-sync/pull/3) ([mastertinner](https://github.com/mastertinner))
 
 ## [v0.1.1](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v0.1.1) (2016-01-30)
 
