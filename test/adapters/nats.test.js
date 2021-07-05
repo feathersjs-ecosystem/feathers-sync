@@ -12,7 +12,7 @@ describe('feathers-sync NATS tests', () => {
   before(async () => {
     app1 = createApp();
     await app1.sync.ready;
-    
+
     app2 = createApp();
     await app2.sync.ready;
 
@@ -34,7 +34,7 @@ describe('feathers-sync NATS tests', () => {
         assert.ok(context);
         assert.deepStrictEqual(context.result, data);
         assert.strictEqual(context.method, 'create');
-        assert.strictEqual(context.type, 'after');
+        assert.strictEqual(context.type, null);
         assert.strictEqual(context.service, app.service('todo'));
         assert.strictEqual(context.app, app);
 

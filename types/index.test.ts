@@ -1,4 +1,4 @@
-import feathers from '@feathersjs/feathers';
+import { feathers } from '@feathersjs/feathers';
 import sync, { redis } from 'feathers-sync';
 
 const app = feathers();

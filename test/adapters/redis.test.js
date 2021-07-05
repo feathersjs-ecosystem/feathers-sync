@@ -34,7 +34,7 @@ describe('feathers-sync Redis tests', () => {
         assert.ok(context);
         assert.deepStrictEqual(context.result, data);
         assert.strictEqual(context.method, 'create');
-        assert.strictEqual(context.type, 'after');
+        assert.strictEqual(context.type, null);
         assert.strictEqual(context.service, app.service('todo'));
         assert.strictEqual(context.app, app);
 

@@ -31,11 +31,12 @@ describe('feathers-sync core tests', () => {
           path: 'todo',
           data: message,
           context: {
-            arguments: [message],
+            arguments: [message, {}],
             data: message,
             params: {},
-            type: 'after',
+            type: null,
             method: 'create',
+            event: 'created',
             path: 'todo',
             result: message
           }
@@ -126,10 +127,14 @@ describe('feathers-sync core tests', () => {
     });
   });
 
-  it('sync-in does nothing for invalid event (path)', () => {
-    app.emit('sync-in', {
-      event: 'something',
-      path: 'todos'
-    });
+  it('sync-in fails for invalid event (path)', () => {
+    try {
+      app.emit('sync-in', {
+        event: 'something',
+        path: 'todos'
+      });
+    } catch (error) {
+      assert.strictEqual(error.message, 'Can not find service \'todos\'');
+    }
   });
 });
