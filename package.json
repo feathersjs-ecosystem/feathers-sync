@@ -38,7 +38,7 @@
     "release:patch": "npm version patch && npm publish",
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish",
-    "update-dependencies": "ncu -u",
+    "update-dependencies": "ncu -u -x nats",
     "lint": "semistandard --fix",
     "dtslint": "dtslint types",
     "mocha": "mocha --recursive test/",
