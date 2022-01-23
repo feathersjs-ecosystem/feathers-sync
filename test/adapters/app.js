@@ -6,11 +6,11 @@ module.exports = options => {
     .configure(sync(options))
     .use('/todo', {
       events: ['custom'],
-      create (data) {
-        return Promise.resolve(data);
+      async create (data) {
+        return data;
       },
-      update (id, data, params) {
-        return Promise.resolve(data);
+      async update (id, data, params) {
+        return data;
       }
     });
 };

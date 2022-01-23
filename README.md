@@ -1,17 +1,33 @@
 # Feathers sync
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs-ecosystem/feathers-sync.svg)](https://greenkeeper.io/)
-
-[![Build Status](https://travis-ci.org/feathersjs-ecosystem/feathers-sync.png?branch=master)](https://travis-ci.org/feathersjs-ecosystem/feathers-sync)
+[![CI](https://github.com/feathersjs-ecosystem/feathers-sync/workflows/CI/badge.svg)](https://github.com/feathersjs-ecosystem/feathers-sync/actions?query=workflow%3ACI)
 [![Dependency Status](https://img.shields.io/david/feathersjs-ecosystem/feathers-sync.svg?style=flat-square)](https://david-dm.org/feathersjs-ecosystem/feathers-sync)
 [![Download Status](https://img.shields.io/npm/dm/feathers-sync.svg?style=flat-square)](https://www.npmjs.com/package/feathers-sync)
-[![Slack Status](http://slack.feathersjs.com/badge.svg)](http://slack.feathersjs.com)
 
 > Synchronize service events between application instances
 
+<!-- TOC -->
+
+- [Feathers sync](#feathers-sync)
+  - [About](#about)
+    - [Usage](#usage)
+    - [`app.sync`](#appsync)
+    - [Disabling synchronization](#disabling-synchronization)
+  - [Adapters](#adapters)
+    - [Redis](#redis)
+    - [AMQP](#amqp)
+    - [NATS](#nats)
+  - [How it works](#how-it-works)
+  - [Caveat: Listening to service events](#caveat-listening-to-service-events)
+  - [Custom Serializer / Deserializer](#custom-serializer--deserializer)
+  - [Writing custom adapters](#writing-custom-adapters)
+  - [License](#license)
+
+<!-- /TOC -->
+
 ## About
 
-When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed`) do not get propagated to other instances.
+When running multiple instances of your Feathers application (e.g. on several Heroku Dynos), service events (`created`, `updated`, `patched`, `removed` and any custom defined events) do not get propagated to other instances.
 
 feathers-sync uses a messaging mechanism to propagate all events to all application instances. It currently supports:
 
@@ -88,7 +104,7 @@ app.configure(sync.redis({
 
 // Configure Redis using an existing redisClient
 app.configure(sync.redis({
-  redisClient: redisClient 
+  redisClient: redisClient
 }))
 ```
 
@@ -99,6 +115,7 @@ app.configure(sync.redis({
 - `key` - The key under which all synchronization events will be stored (default: `feathers-sync`)
 - `redisClient` - An existing instance of redisClient
 - `redisOptions` - Redis [client options](http://redis.js.org/#api-rediscreateclient)
+- `subscriberEvent` - The event to listen for. Defaults to `message`. Could be `message_buffer` or `messageBuffer` depending on what Redis library is being used.
 
 ### AMQP
 
@@ -110,25 +127,27 @@ app.configure(sync.redis({
 
 - `uri` - The connection string (must start with `nats://`)
 - `key` (default: `feathers-sync`) - The name exchange where sync messages will be published
+<<<<<<< HEAD
+
+
+## How it works
+=======
+>>>>>>> d303798d46845c43ca61dded8fa386e1aa5d35f4
 
 
 ## How it works
 
 ![alt tag](https://raw.githubusercontent.com/PedroMD/feathers-sync/master/feathers-sync%20and%20real-time%20events-60.png)
 
-## Caveats
+## Caveat: Listening to service events
 
-When listening to service events with `feathers-sync`, all events are going to get propagated to all clients. This means, that your event listeners should not perform any actions that change the global state (e.g. write something into the database) because every server instance will perform the same action.
+With `feathers-sync` enabled all events are going to get propagated to every application instance. This means, that any event listeners registered _on the server_ should not perform any actions that change the global state (e.g. write something into the database or call to an external API) because it will end up running multiple times (once on each instance). Instead, event listeners should only be used to update the local state (e.g. a local cache) and send real-time updates to all its clients.
 
-Instead, event listeners should only be used to update the local state (e.g. a local cache) and send real-time updates to all its clients.
-
-If you need to perform actions, for example setting up a first blog post after a new user has been created, add it to the service method itself (which will only run on its own instance) or use a [Feathers after hook](https://docs.feathersjs.com/api/hooks.html).
-
-Event data are serialized and deserialized using `JSON.stringify` and `JSON.parse`. This could pose a problem if the event data contains circular reference or has `Date` values (`Date` is not a valid JSON value ([source](https://www.w3schools.com/js/js_json_datatypes.asp)) and will be serialized to a string).
+If you need to perform actions, for example setting up a first blog post after a new user has been created, add it to the service method itself or use a [Feathers hook](https://docs.feathersjs.com/api/hooks.html) (both of which will only run once on the instance that is handling the request).
 
 ## Custom Serializer / Deserializer
 
-To provide a custom serializer / deserializer:
+Event data are serialized and deserialized using `JSON.stringify` and `JSON.parse`. This could pose a problem if the event data contains circular reference or has `Date` values (`Date` is not a valid JSON value ([source](https://www.w3schools.com/js/js_json_datatypes.asp)) and will be serialized to a string). You can provide a custom serializer/deserializer like this:
 
 ```js
 // BSON can serialize / deserialize `Date` values.
@@ -195,6 +214,6 @@ The `data` for the `sync-in` event should be in the same form as the one that is
 
 ## License
 
-Copyright (c) 2019 Feathers contributors
+Copyright (c) 2021 Feathers contributors
 
 Licensed under the [MIT license](LICENSE).
