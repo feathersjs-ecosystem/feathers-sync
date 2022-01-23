@@ -41,15 +41,17 @@ This allows to scale real-time websocket connections to any number of clients.
 The application initialized in the following example will use the local `feathers-sync` database and `sync` collection and share service events with every other instance connected to the same database:
 
 ```js
-const feathers = require('@feathers/feathers');
-const sync = require('feathers-sync');
+const feathers = require("@feathers/feathers");
+const sync = require("feathers-sync");
 
 const app = feathers();
 
-app.configure(sync({
-  uri: 'redis://localhost:6379'
-}));
-app.use('/todos', todoService);
+app.configure(
+  sync({
+    uri: "redis://localhost:6379",
+  })
+);
+app.use("/todos", todoService);
 ```
 
 > Note that configuring sync should happen before configuring services
@@ -72,19 +74,19 @@ app.sync.ready.then(() => {
 `feathers-sync` can be disabled on the service method call level in a hook by setting the `require('feathers-sync').SYNC` property on the hook context to `false`:
 
 ```js
-const { SYNC } = require('feathers-sync');
+const { SYNC } = require("feathers-sync");
 
-app.service('messages').hooks({
+app.service("messages").hooks({
   after: {
     create(context) {
       // Don't synchronize if more than 1000 items were created at once
-      if(context.result.length > 1000) {
+      if (context.result.length > 1000) {
         context[SYNC] = false;
       }
 
       return context;
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -94,18 +96,24 @@ app.service('messages').hooks({
 
 ```js
 // Configure Redis
-app.configure(sync({
-  uri: 'redis://localhost:6379'
-}));
+app.configure(
+  sync({
+    uri: "redis://localhost:6379",
+  })
+);
 
-app.configure(sync.redis({
-  db: redisInstance
-}));
+app.configure(
+  sync.redis({
+    db: redisInstance,
+  })
+);
 
 // Configure Redis using an existing redisClient
-app.configure(sync.redis({
-  redisClient: redisClient
-}))
+app.configure(
+  sync.redis({
+    redisClient: redisClient,
+  })
+);
 ```
 
 ### Redis
@@ -125,9 +133,9 @@ app.configure(sync.redis({
 
 ### NATS
 
-- `uri` - The connection string (must start with `nats://`)
-- `key` (default: `feathers-sync`) - The name exchange where sync messages will be published
-
+- `uri` - The connection string (example `nats://`)
+- `key` (default: `feathers-sync`) - The name of subject where sync messages will be published
+- `natsConnectionOptions` - NATS [connection options](https://github.com/nats-io/nats.js#Connection-Options)
 
 ## How it works
 
@@ -145,15 +153,17 @@ Event data are serialized and deserialized using `JSON.stringify` and `JSON.pars
 
 ```js
 // BSON can serialize / deserialize `Date` values.
-const bson = require('bson')
+const bson = require("bson");
 
-app.configure(sync({
-  uri: 'redis://localhost:6379',
-  // Replies will be sent to callbacks as Buffers instead of Strings for bson.deserialize to work.
-  redisOptions: { return_buffers: true },
-  serialize: bson.serialize,
-  deserialize: bson.deserialize,
-}));
+app.configure(
+  sync({
+    uri: "redis://localhost:6379",
+    // Replies will be sent to callbacks as Buffers instead of Strings for bson.deserialize to work.
+    redisOptions: { return_buffers: true },
+    serialize: bson.serialize,
+    deserialize: bson.deserialize,
+  })
+);
 ```
 
 > `Redis` and `AMQP` can support binary serialization / deserialization (i.e. `Buffer` data). `NATS` currently does not support custom serialization / deserialization/
@@ -163,7 +173,7 @@ app.configure(sync({
 `feathers-sync` allows to implement custom adapters using the `sync-in` and `sync-out` events on the application:
 
 ```js
-const { core } = require('feathers-sync');
+const { core } = require("feathers-sync");
 const myMessagingService = {
   publish(data) {
     // send data here
@@ -171,34 +181,34 @@ const myMessagingService = {
 
   subscribe(callback) {
     // subscribe to message queue and emit data
-  }
-}
+  },
+};
 
-module.exports = config => {
+module.exports = (config) => {
   // If adapter supports configurable serializer / deserializer (defaults to `JSON.stringfy` / `JSON.parse`)
   const { deserialize, serialize } = config;
 
-  return app => {
+  return (app) => {
     app.configure(core);
     app.sync = {
-      type: 'custom',
+      type: "custom",
       ready: new Promise((resolve, reject) => {
         // resolve when client is ready
         // reject on connection error
       }),
       serialize,
-      deserialize
+      deserialize,
     };
 
     // Sent every time a service
-    app.on('sync-out', data => {
+    app.on("sync-out", (data) => {
       // Publish `data` to the message queue
       myMessagingService.publish(data);
     });
 
-    myMessagingService.subscribe(data => {
+    myMessagingService.subscribe((data) => {
       // Send the synchronization event to the application
-      app.emit('sync-in', data);
+      app.emit("sync-in", data);
     });
   };
 };
