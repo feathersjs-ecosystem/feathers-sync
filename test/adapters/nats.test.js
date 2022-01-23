@@ -4,7 +4,12 @@ const _app = require('./app');
 describe('feathers-sync NATS tests', () => {
   const createApp = _app({
     uri: 'nats://localhost:4222',
-    key: 'feathers-sync2'
+    key: 'feathers-sync2',
+    natsConnectionOptions: {
+      // set debug true if debugging
+      // debug: true,
+      servers: ['localhost:4222']
+    }
   });
 
   let app1, app2, app3;
@@ -25,10 +30,10 @@ describe('feathers-sync NATS tests', () => {
     assert.strictEqual(app1.sync.type, 'nats');
   });
 
-  it('creating todo on app1 trigger created on all apps with hook context', done => {
+  it('creating todo on app1 trigger created on all apps with hook context', (done) => {
     const original = { test: 'data' };
     let count = 0;
-    const onCreated = app => {
+    const onCreated = (app) => {
       app.service('todo').once('created', (data, context) => {
         assert.deepStrictEqual(original, data);
         assert.ok(context);
@@ -49,8 +54,10 @@ describe('feathers-sync NATS tests', () => {
     onCreated(app2);
     onCreated(app3);
 
-    app1.service('todo').create(original).then(data =>
-      assert.deepStrictEqual(original, data)
-    ).catch(done);
+    app1
+      .service('todo')
+      .create(original)
+      .then((data) => assert.deepStrictEqual(original, data))
+      .catch(done);
   });
 });
