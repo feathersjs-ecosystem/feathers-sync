@@ -8,6 +8,7 @@ describe('feathers-sync NATS tests', () => {
   });
 
   let app1, app2, app3;
+<<<<<<< HEAD
   before(() => {
     app1 = createApp();
     return app1.sync.ready.then(() => {
@@ -17,6 +18,18 @@ describe('feathers-sync NATS tests', () => {
       app3 = createApp();
       return app3.sync.ready;
     });
+=======
+
+  before(async () => {
+    app1 = createApp();
+    await app1.sync.ready;
+
+    app2 = createApp();
+    await app2.sync.ready;
+
+    app3 = createApp();
+    await app3.sync.ready;
+>>>>>>> d303798d46845c43ca61dded8fa386e1aa5d35f4
   });
 
   it('initialized with NATS adapter', () => {
@@ -33,7 +46,11 @@ describe('feathers-sync NATS tests', () => {
         assert.ok(context);
         assert.deepStrictEqual(context.result, data);
         assert.strictEqual(context.method, 'create');
+<<<<<<< HEAD
         assert.strictEqual(context.type, 'after');
+=======
+        assert.strictEqual(context.type, null);
+>>>>>>> d303798d46845c43ca61dded8fa386e1aa5d35f4
         assert.strictEqual(context.service, app.service('todo'));
         assert.strictEqual(context.app, app);
 
