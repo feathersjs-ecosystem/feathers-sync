@@ -54,20 +54,12 @@
     "src": "src"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "amqplib": "^0.5.5",
-    "debug": "^4.1.1",
-    "lodash": "^4.17.20",
-    "nats": "^1.4.12",
-    "redis": "^3.0.2"
-=======
     "amqp-connection-manager": "^3.7.0",
     "amqplib": "^0.8.0",
     "debug": "^4.3.2",
     "lodash": "^4.17.21",
     "nats": "^1.4.12",
     "redis": "^3.1.2"
->>>>>>> d303798d46845c43ca61dded8fa386e1aa5d35f4
   },
   "devDependencies": {
     "@feathersjs/feathers": "^5.0.0-pre.5",

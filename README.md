@@ -127,12 +127,6 @@ app.configure(sync.redis({
 
 - `uri` - The connection string (must start with `nats://`)
 - `key` (default: `feathers-sync`) - The name exchange where sync messages will be published
-<<<<<<< HEAD
-
-
-## How it works
-=======
->>>>>>> d303798d46845c43ca61dded8fa386e1aa5d35f4
 
 
 ## How it works
