@@ -59,7 +59,7 @@
     "debug": "^4.3.3",
     "lodash": "^4.17.21",
     "nats": "^2.5.0",
-    "redis": "^4.0.2"
+    "redis": "^3.1.2"
   },
   "devDependencies": {
     "@feathersjs/feathers": "^5.0.0-pre.5",
