@@ -119,7 +119,6 @@ app.configure(
 ### Redis
 
 - `uri` - The connection string (must start with `redis://`)
-- `db` - The Redis database object or connection string (e.g. `redis://localhost:6379`)
 - `key` - The key under which all synchronization events will be stored (default: `feathers-sync`)
 - `redisClient` - An existing instance of redisClient
 - `redisOptions` - Redis [client options](http://redis.js.org/#api-rediscreateclient)
