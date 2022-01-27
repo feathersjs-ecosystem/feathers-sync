@@ -2,11 +2,24 @@
 
 ## [Unreleased](https://github.com/feathersjs-ecosystem/feathers-sync/tree/HEAD)
 
-[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v2.4.0...HEAD)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.0...HEAD)
 
 **Merged pull requests:**
 
-- Add compatibility for v5 and update dependencies [\#167](https://github.com/feathersjs-ecosystem/feathers-sync/pull/167) ([daffl](https://github.com/daffl))
+- Update to Redis 4 client and other latest dependencies [\#176](https://github.com/feathersjs-ecosystem/feathers-sync/pull/176) ([daffl](https://github.com/daffl))
+- NATS 2.0 [\#175](https://github.com/feathersjs-ecosystem/feathers-sync/pull/175) ([ViljarVoidula](https://github.com/ViljarVoidula))
+- chore\(dependencies\): Update all dependencies [\#171](https://github.com/feathersjs-ecosystem/feathers-sync/pull/171) ([daffl](https://github.com/daffl))
+- Update plugin infrastructure and dependencies [\#169](https://github.com/feathersjs-ecosystem/feathers-sync/pull/169) ([daffl](https://github.com/daffl))
+
+## [v3.0.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v3.0.0) (2022-01-27)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v2.4.0...v3.0.0)
+
+**Closed issues:**
+
+- Custom events do not get broadcasted to other servers [\#173](https://github.com/feathersjs-ecosystem/feathers-sync/issues/173)
+- \[Help Wanted\] Events are not sent to all instances always [\#165](https://github.com/feathersjs-ecosystem/feathers-sync/issues/165)
+- Update nats major version [\#163](https://github.com/feathersjs-ecosystem/feathers-sync/issues/163)
 
 ## [v2.4.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v2.4.0) (2021-07-05)
 
@@ -16,6 +29,10 @@
 
 - Needs update for Feathers v5 [\#166](https://github.com/feathersjs-ecosystem/feathers-sync/issues/166)
 - Issue with Google oAuth [\#164](https://github.com/feathersjs-ecosystem/feathers-sync/issues/164)
+
+**Merged pull requests:**
+
+- Add compatibility for v5 and update dependencies [\#167](https://github.com/feathersjs-ecosystem/feathers-sync/pull/167) ([daffl](https://github.com/daffl))
 
 ## [v2.3.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v2.3.0) (2021-03-19)
 
@@ -277,8 +294,8 @@
 - Add AMQP Adapter [\#12](https://github.com/feathersjs-ecosystem/feathers-sync/pull/12) ([tinque](https://github.com/tinque))
 - Update all dependencies 🌴 [\#10](https://github.com/feathersjs-ecosystem/feathers-sync/pull/10) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - Fix broadcast wrong messages [\#9](https://github.com/feathersjs-ecosystem/feathers-sync/pull/9) ([thomaschaaf](https://github.com/thomaschaaf))
-- Update readme [\#7](https://github.com/feathersjs-ecosystem/feathers-sync/pull/7) ([mastertinner](https://github.com/mastertinner))
-- add redis to subtitle in readme [\#3](https://github.com/feathersjs-ecosystem/feathers-sync/pull/3) ([mastertinner](https://github.com/mastertinner))
+- Update readme [\#7](https://github.com/feathersjs-ecosystem/feathers-sync/pull/7) ([cloudlena](https://github.com/cloudlena))
+- add redis to subtitle in readme [\#3](https://github.com/feathersjs-ecosystem/feathers-sync/pull/3) ([cloudlena](https://github.com/cloudlena))
 
 ## [v0.1.2](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v0.1.2) (2016-12-08)
 
@@ -308,7 +325,7 @@
 
 **Merged pull requests:**
 
-- disallow yoda http://eslint.org/docs/rules/yoda.html [\#4](https://github.com/feathersjs-ecosystem/feathers-sync/pull/4) ([mastertinner](https://github.com/mastertinner))
+- disallow yoda http://eslint.org/docs/rules/yoda.html [\#4](https://github.com/feathersjs-ecosystem/feathers-sync/pull/4) ([cloudlena](https://github.com/cloudlena))
 - redis adapter [\#2](https://github.com/feathersjs-ecosystem/feathers-sync/pull/2) ([kc-dot-io](https://github.com/kc-dot-io))
 
 
