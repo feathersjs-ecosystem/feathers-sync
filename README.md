@@ -119,11 +119,9 @@ app.configure(
 ### Redis
 
 - `uri` - The connection string (must start with `redis://`)
-- `db` - The Redis database object or connection string (e.g. `redis://localhost:6379`)
 - `key` - The key under which all synchronization events will be stored (default: `feathers-sync`)
 - `redisClient` - An existing instance of redisClient
 - `redisOptions` - Redis [client options](http://redis.js.org/#api-rediscreateclient)
-- `subscriberEvent` - The event to listen for. Defaults to `message`. Could be `message_buffer` or `messageBuffer` depending on what Redis library is being used.
 
 ### AMQP
 
