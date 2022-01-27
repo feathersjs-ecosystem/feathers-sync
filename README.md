@@ -122,7 +122,6 @@ app.configure(
 - `key` - The key under which all synchronization events will be stored (default: `feathers-sync`)
 - `redisClient` - An existing instance of redisClient
 - `redisOptions` - Redis [client options](http://redis.js.org/#api-rediscreateclient)
-- `subscriberEvent` - The event to listen for. Defaults to `message`. Could be `message_buffer` or `messageBuffer` depending on what Redis library is being used.
 
 ### AMQP
 
