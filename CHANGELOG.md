@@ -1,16 +1,5 @@
 # Changelog
 
-## [Unreleased](https://github.com/feathersjs-ecosystem/feathers-sync/tree/HEAD)
-
-[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.0...HEAD)
-
-**Merged pull requests:**
-
-- Update to Redis 4 client and other latest dependencies [\#176](https://github.com/feathersjs-ecosystem/feathers-sync/pull/176) ([daffl](https://github.com/daffl))
-- NATS 2.0 [\#175](https://github.com/feathersjs-ecosystem/feathers-sync/pull/175) ([ViljarVoidula](https://github.com/ViljarVoidula))
-- chore\(dependencies\): Update all dependencies [\#171](https://github.com/feathersjs-ecosystem/feathers-sync/pull/171) ([daffl](https://github.com/daffl))
-- Update plugin infrastructure and dependencies [\#169](https://github.com/feathersjs-ecosystem/feathers-sync/pull/169) ([daffl](https://github.com/daffl))
-
 ## [v3.0.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v3.0.0) (2022-01-27)
 
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v2.4.0...v3.0.0)
@@ -20,6 +9,13 @@
 - Custom events do not get broadcasted to other servers [\#173](https://github.com/feathersjs-ecosystem/feathers-sync/issues/173)
 - \[Help Wanted\] Events are not sent to all instances always [\#165](https://github.com/feathersjs-ecosystem/feathers-sync/issues/165)
 - Update nats major version [\#163](https://github.com/feathersjs-ecosystem/feathers-sync/issues/163)
+
+**Merged pull requests:**
+
+- Update to Redis 4 client and other latest dependencies [\#176](https://github.com/feathersjs-ecosystem/feathers-sync/pull/176) ([daffl](https://github.com/daffl))
+- NATS 2.0 [\#175](https://github.com/feathersjs-ecosystem/feathers-sync/pull/175) ([ViljarVoidula](https://github.com/ViljarVoidula))
+- chore\(dependencies\): Update all dependencies [\#171](https://github.com/feathersjs-ecosystem/feathers-sync/pull/171) ([daffl](https://github.com/daffl))
+- Update plugin infrastructure and dependencies [\#169](https://github.com/feathersjs-ecosystem/feathers-sync/pull/169) ([daffl](https://github.com/daffl))
 
 ## [v2.4.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v2.4.0) (2021-07-05)
 
