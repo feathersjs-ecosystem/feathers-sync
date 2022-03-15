@@ -1,5 +1,18 @@
 # Changelog
 
+## [Unreleased](https://github.com/feathersjs-ecosystem/feathers-sync/tree/HEAD)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.1...HEAD)
+
+**Merged pull requests:**
+
+- Subscribe to Redis messages after Redis client connects. Subscribing … [\#180](https://github.com/feathersjs-ecosystem/feathers-sync/pull/180) ([babysealclubber](https://github.com/babysealclubber))
+- chore\(dependencies\): Update all dependencies [\#177](https://github.com/feathersjs-ecosystem/feathers-sync/pull/177) ([daffl](https://github.com/daffl))
+
+## [v3.0.1](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v3.0.1) (2022-03-15)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.0...v3.0.1)
+
 ## [v3.0.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v3.0.0) (2022-01-27)
 
 [Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v2.4.0...v3.0.0)
