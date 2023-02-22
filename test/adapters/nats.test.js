@@ -39,7 +39,7 @@ describe('feathers-sync NATS tests', () => {
         assert.ok(context);
         assert.deepStrictEqual(context.result, data);
         assert.strictEqual(context.method, 'create');
-        assert.strictEqual(context.type, null);
+        assert.strictEqual(context.type, 'around');
         assert.strictEqual(context.service, app.service('todo'));
         assert.strictEqual(context.app, app);
 

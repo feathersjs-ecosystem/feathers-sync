@@ -34,7 +34,7 @@ describe('feathers-sync core tests', () => {
             arguments: [message, {}],
             data: message,
             params: {},
-            type: null,
+            type: 'around',
             statusCode: undefined,
             method: 'create',
             event: 'created',
