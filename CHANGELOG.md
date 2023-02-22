@@ -2,16 +2,32 @@
 
 ## [Unreleased](https://github.com/feathersjs-ecosystem/feathers-sync/tree/HEAD)
 
-[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.1...HEAD)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.2...HEAD)
+
+**Merged pull requests:**
+
+- fix: Call context.toJSON if available [\#185](https://github.com/feathersjs-ecosystem/feathers-sync/pull/185) ([daffl](https://github.com/daffl))
+
+## [v3.0.2](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v3.0.2) (2023-02-22)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.1...v3.0.2)
+
+**Closed issues:**
+
+- On V5 Dove, service details missing in calls [\#184](https://github.com/feathersjs-ecosystem/feathers-sync/issues/184)
+- Feathers-sync Redis Adapter with an existing Redis Sentinel client and Feathers-Socket.io [\#182](https://github.com/feathersjs-ecosystem/feathers-sync/issues/182)
+- High RAM usage when large files are uploaded [\#181](https://github.com/feathersjs-ecosystem/feathers-sync/issues/181)
+- startup errors after update to 3.0.0 with redis adapter [\#178](https://github.com/feathersjs-ecosystem/feathers-sync/issues/178)
+- bson - cyclic dependency detected  [\#168](https://github.com/feathersjs-ecosystem/feathers-sync/issues/168)
+
+## [v3.0.1](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v3.0.1) (2022-03-15)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.0...v3.0.1)
 
 **Merged pull requests:**
 
 - Subscribe to Redis messages after Redis client connects. Subscribing … [\#180](https://github.com/feathersjs-ecosystem/feathers-sync/pull/180) ([babysealclubber](https://github.com/babysealclubber))
 - chore\(dependencies\): Update all dependencies [\#177](https://github.com/feathersjs-ecosystem/feathers-sync/pull/177) ([daffl](https://github.com/daffl))
-
-## [v3.0.1](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v3.0.1) (2022-03-15)
-
-[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.0...v3.0.1)
 
 ## [v3.0.0](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v3.0.0) (2022-01-27)
 
