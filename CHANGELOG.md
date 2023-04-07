@@ -2,11 +2,22 @@
 
 ## [Unreleased](https://github.com/feathersjs-ecosystem/feathers-sync/tree/HEAD)
 
-[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.2...HEAD)
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.3...HEAD)
 
 **Merged pull requests:**
 
+- fix: Make sure all tests run [\#189](https://github.com/feathersjs-ecosystem/feathers-sync/pull/189) ([daffl](https://github.com/daffl))
+- fix: check context before context.toJSON [\#187](https://github.com/feathersjs-ecosystem/feathers-sync/pull/187) ([palmtown](https://github.com/palmtown))
 - fix: Call context.toJSON if available [\#185](https://github.com/feathersjs-ecosystem/feathers-sync/pull/185) ([daffl](https://github.com/daffl))
+
+## [v3.0.3](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v3.0.3) (2023-04-07)
+
+[Full Changelog](https://github.com/feathersjs-ecosystem/feathers-sync/compare/v3.0.2...v3.0.3)
+
+**Closed issues:**
+
+- describe.only causing tests to be skipped [\#188](https://github.com/feathersjs-ecosystem/feathers-sync/issues/188)
+- TypeError: Cannot read properties of undefined \(reading 'toJSON'\) [\#186](https://github.com/feathersjs-ecosystem/feathers-sync/issues/186)
 
 ## [v3.0.2](https://github.com/feathersjs-ecosystem/feathers-sync/tree/v3.0.2) (2023-02-22)
 
