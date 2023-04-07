@@ -62,13 +62,14 @@
     "redis": "^4.6.4"
   },
   "devDependencies": {
-    "@feathersjs/feathers": "^5.0.0-pre.38",
+    "@feathersjs/feathers": "^5.0.3",
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/npm": "^9.0.2",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/node": "^18.14.0",
     "bson": "^5.0.1",
     "dtslint": "^4.2.1",
+    "ioredis": "^5.3.1",
     "mocha": "^10.2.0",
     "npm-check-updates": "^16.7.6",
     "nyc": "^15.1.0",
