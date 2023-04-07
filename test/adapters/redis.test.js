@@ -2,7 +2,7 @@ const assert = require('assert');
 const bson = require('bson');
 const _app = require('./app');
 
-describe.only('feathers-sync Redis tests', () => {
+describe('feathers-sync Redis tests', () => {
   const createApp = _app({
     uri: 'redis://localhost:6379'
   });
