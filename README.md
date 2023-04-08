@@ -30,7 +30,7 @@ When running multiple instances of your Feathers application (e.g. on several He
 
 feathers-sync uses a messaging mechanism to propagate all events to all application instances. It currently supports:
 
-- Redis via [redis](https://github.com/NodeRedis/node_redis)
+- Redis via [ioredis](https://github.com/luin/ioredis)
 - AMQP (RabbitMQ) via [amqplib](https://github.com/squaremo/amqp.node)
 
 This allows to scale real-time websocket connections to any number of clients.
@@ -94,33 +94,39 @@ app.service('messages').hooks({
 `feathers-sync` can be initialized either by specifying the type of adapter through the `uri` (e.g. `redis://localhost:6379`) or using e.g. `sync.redis` directly:
 
 ```js
-// Configure Redis
+// Configure with Redis
 app.configure(
   sync({
     uri: 'redis://localhost:6379',
   })
 );
 
-app.configure(
-  sync.redis({
-    db: redisInstance,
-  })
-);
+// Configure Redis using an existing redis instance
+const Redis = require('ioredis');
+const redisClient = new Redis({
+  // see https://luin.github.io/ioredis/index.html#RedisOptions for additional options
+  host: 'my.redis.host.com',
+  port: 6379,
+  lazyConnect: true,
+  maxRetriesPerRequest: null,
+  // ...
+});
 
-// Configure Redis using an existing redisClient
 app.configure(
   sync.redis({
-    redisClient: redisClient,
+    key: 'feathers-sync',
+    serialize: JSON.stringify,
+    deserialize: JSON.parse,
+    redisClient
   })
 );
 ```
 
 ### Redis
 
-- `uri` - The connection string (must start with `redis://`)
+- `uri` - The connection string (must start with `redis://`) (default: `localhost:6379`)
 - `key` - The key under which all synchronization events will be stored (default: `feathers-sync`)
-- `redisClient` - An existing instance of redisClient
-- `redisOptions` - Redis [client options](http://redis.js.org/#api-rediscreateclient)
+- `redisClient` - (optional) An existing instance of a redis client
 
 ### AMQP
 
@@ -155,8 +161,6 @@ const bson = require('bson');
 app.configure(
   sync({
     uri: 'redis://localhost:6379',
-    // Replies will be sent to callbacks as Buffers instead of Strings for bson.deserialize to work.
-    redisOptions: { return_buffers: true },
     serialize: bson.serialize,
     deserialize: bson.deserialize,
   })

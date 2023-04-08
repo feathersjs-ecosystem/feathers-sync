@@ -57,9 +57,9 @@
     "amqp-connection-manager": "^4.1.10",
     "amqplib": "^0.10.3",
     "debug": "^4.3.4",
+    "ioredis": "^5.3.1",
     "lodash": "^4.17.21",
-    "nats": "^2.12.1",
-    "redis": "^4.6.4"
+    "nats": "^2.12.1"
   },
   "devDependencies": {
     "@feathersjs/feathers": "^5.0.3",
@@ -69,7 +69,6 @@
     "@types/node": "^18.14.0",
     "bson": "^5.0.1",
     "dtslint": "^4.2.1",
-    "ioredis": "^5.3.1",
     "mocha": "^10.2.0",
     "npm-check-updates": "^16.7.6",
     "nyc": "^15.1.0",
