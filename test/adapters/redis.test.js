@@ -59,7 +59,6 @@ describe('feathers-sync Redis custom serializer / deserializer tests', () => {
   const createApp = _app({
     uri: 'redis://localhost:6379',
     key: 'feathers-sync2',
-    redisOptions: { return_buffers: true },
     serialize: bson.serialize,
     deserialize: bson.deserialize
   });

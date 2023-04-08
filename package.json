@@ -57,12 +57,12 @@
     "amqp-connection-manager": "^4.1.10",
     "amqplib": "^0.10.3",
     "debug": "^4.3.4",
+    "ioredis": "^5.3.1",
     "lodash": "^4.17.21",
-    "nats": "^2.12.1",
-    "redis": "^4.6.4"
+    "nats": "^2.12.1"
   },
   "devDependencies": {
-    "@feathersjs/feathers": "^5.0.0-pre.38",
+    "@feathersjs/feathers": "^5.0.3",
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/npm": "^9.0.2",
     "@semantic-release/release-notes-generator": "^10.0.3",
