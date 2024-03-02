@@ -12,7 +12,7 @@ describe('feathers-sync tests', () => {
   it('throws an error when uri is missing', () => {
     assert.throws(() => {
       feathers().configure(sync({}));
-    }, /A `uri` option with the database connection string has to be provided/);
+    }, /A `uri` option with the database connection string, or a `redisClient` object has to be provided to feathers-sync/);
   });
 
   it('throws an error for invalid adapter', () => {
