@@ -31,6 +31,7 @@ describe('feathers-sync core tests', () => {
           path: 'todo',
           data: message,
           context: {
+            id: undefined,
             arguments: [message, {}],
             data: message,
             params: {},
@@ -80,13 +81,47 @@ describe('feathers-sync core tests', () => {
     app.service('todo').create({ message });
   });
 
+  it('sends sync-out for manual emits', done => {
+    const message = { message: 'This is a test', id: 1 };
+
+    app.once('sync-out', data => {
+      try {
+        assert.deepStrictEqual(data, {
+          event: 'created',
+          path: 'todo',
+          data: message,
+          context: {
+            id: 1,
+            params: {},
+            method: 'create',
+            event: 'created',
+            path: 'todo',
+            result: message
+          }
+        });
+        done();
+      } catch (error) {
+        done(error);
+      }
+    });
+
+    app.service('todo').emit('created', message);
+  });
+
   it('sends sync-out for custom events', done => {
     app.once('sync-out', data => {
       assert.deepStrictEqual(data, {
         event: 'custom',
         path: 'todo',
         data: 'testing',
-        context: undefined
+        context: {
+          path: 'todo',
+          id: undefined,
+          method: undefined,
+          params: {},
+          result: 'testing',
+          event: 'custom'
+        }
       });
       done();
     });
